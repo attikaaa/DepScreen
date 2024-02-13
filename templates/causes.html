@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add any additional styles or meta tags here -->
+    <style>
+        body {
+            background: url('/static/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center; /* Center-align the text within the body */
+            margin-left: 200px;
+            margin-right: 200px; /* Remove default body margin */
+            padding: 5; /* Remove default body padding */
+            color: #2f5071
+        }
+
+        h1 {
+            margin-top: 50px; /* Add some top margin to the headline */
+        }
+
+        /* Remove margins and set width to 100% for paragraphs, headings, and lists */
+        p, h2, ul {
+            width: 100%;
+            margin: 5opx;
+            padding: 50px;
+            text-align: left; /* Left-align text within these elements */
+        }
+    </style>
+</head>
+<body>
+    {% if 0 < depression_score <= 42 %}
+    <h2>Mild depression may cause:</h2>
+    <ul>
+        <li>Irritability or anger.</li>
+        <li>Hopelessness.</li>
+        <li>Feelings of guilt and despair.</li>
+        <li>Self-loathing.</li>
+        <li>A loss of interest in activities you once enjoyed.</li>
+        <li>Difficulties concentrating at work.</li>
+        <li>A lack of motivation.</li>
+        <li>A sudden disinterest in socializing.</li>
+        <li>Aches and pains with seemingly no direct cause.</li>
+        <li>Daytime sleepiness and fatigue.</li>
+        <li>Insomnia.</li>
+        <li>Appetite changes.</li>
+        <li>Weight changes.</li>
+        <li>Reckless behavior, such as abuse of alcohol and drugs, or gambling.</li>
+    </ul>
+        <!-- Include detailed information about symptoms for mild depression -->
+    {% elif 42 < depression_score <= 84 %}
+    <h2>Moderate depression may cause:</h2>
+    <ul>
+        <li>problems with self-esteem.</li>
+        <li>reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+    </ul>
+        <!-- Include detailed information about symptoms for moderate depression -->
+    {% elif 84 < depression_score <= 126 %}
+    <h2>Severe(Major) depression may also cause:</h2>
+    <ul>
+        <li>Delusions.</li>
+        <li>Feelings of stupor.</li>
+        <li>Hallucinations.</li>
+        <li>Suicidal thoughts or behaviors.</li>
+    </ul>
+        <!-- Include detailed information about symptoms for severe depression -->
+    {% else %}
+    <p>No responses received</p>
+    {% endif %}
+</body>
+</html>

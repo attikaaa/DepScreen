@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <style>
+        body {
+            background: url('/static/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center; /* Center-align the text within the body */
+            margin-left: 200px;
+            margin-right: 200px; /* Remove default body margin */
+            padding: 5; /* Remove default body padding */
+            color: #2f5071
+        }
+
+        h1 {
+            margin-top: 50px; /* Add some top margin to the headline */
+        }
+
+        /* Remove margins and set width to 100% for paragraphs, headings, and lists */
+        p, h2, ul {
+            width: 100%;
+            margin: 5;
+            padding: 20px;
+            text-align: left; /* Left-align text within these elements */
+        }
+    </style>
+</head>
+<body>
+    {% if 0 < depression_score <= 42 %}
+        <h2>Symptoms of Mild Depression:</h2>
+        <ul>
+            <li>Low or depressed mood.</li>
+            <li>Loss of interest in activities.</li>
+            <li>Sleeping too much or too little.</li>
+            <li>Difficulty focusing or concentrating.</li>
+            <li>Fatigue or restlessness.</li>
+            <li>Appetite changes.</li>
+            <li>Feelings of worthlessness or hopelessness.</li>
+            <li>Excessive crying or numbness.</li>
+        </ul>
+        <!-- Include detailed information about symptoms for mild depression -->
+    {% elif 42 < depression_score <= 84 %}
+        <h2>Symptoms of Moderate Depression:</h2>
+        <ul>
+            <li>Decreased productivity.</li>
+            <li>Difficulty thinking or concentrating.</li>
+            <li>Diminished interest in socializing or activities.</li>
+            <li>Fatigue or decreased energy.</li>
+            <li>Irritability or anger.</li>
+            <li>Loss of appetite.</li>
+            <li>Low self-esteem or lack of motivation.</li>
+            <li>physical aches and pain.</li>
+        </ul>
+        <!-- Include detailed information about symptoms for moderate depression -->
+    {% elif 84 < depression_score <= 126 %}
+        <h2>Symptoms of Severe Depression:</h2>
+        <ul>
+            <li>Sleep pattern disturbances.</li>
+            <li>Change in appetite.</li>
+            <li>Tiredness.</li>
+            <li>Sluggish movements or agitation.</li>
+            <li>Difficulty in concentrating or solving simple everyday problems.</li>
+            <li>Feelings of guilt and/or worthlessness.</li>
+            <li>Problems with self-esteem.</li>
+            <li>Reduced productivity.</li>
+            <li>Feelings of worthlessness.</li>
+            <li>Increased sensitivities.</li>
+            <li>Excessive worrying.</li>
+            <li>Low or depressed mood.</li>
+            <li>Loss of interest in activities.</li>
+            <li>Sleeping too much or too little.</li>
+            <li>Difficulty focusing or concentrating.</li>
+            <li>Fatigue or restlessness.</li>
+            <li>Appetite changes.</li>
+            <li>Feelings of worthlessness or hopelessness.</li>
+            <li>Excessive crying or numbness.</li>
+        </ul>
+        <!-- Include detailed information about symptoms for severe depression -->
+    {% endif %}
+</body>
+</html>

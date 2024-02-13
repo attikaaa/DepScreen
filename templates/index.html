@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoCare - Your Emotional Wellness Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+        margin: 0;
+        padding: 0;
+        background: url('/static/images/01.jpg') no-repeat center center fixed;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            header1 {
+            padding: 20px 0;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            width: 100%;
+        }
+        }
+        .container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 25px;
+        }
+
+        .container h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: aqua;
+        }
+
+        .about_us-button {
+            background-color: #6c63ff;
+            color: #fff;
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+
+        .login-button {
+            background-color: #ff8c42;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        .signin-button {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .faq-popup-button {
+            background-color: #ffa200;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        .bottom-section {
+            display: flex;
+            background: url('/static/images/01.jpg') no-repeat center center fixed;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: rgb(42, 40, 40);
+        }
+
+        .start-test-button {
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+            margin-top: 15px;
+            box-shadow: 0px 4px 10px rgba(237, 58, 115, 0.3);
+        }
+
+        .boxes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .box {
+            width: 300px;
+            padding: 20px;
+            background: url('/static/images/gg.jpg') no-repeat center center fixed;;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px;
+            box-shadow: 0px 4px 10px rgba(216, 21, 21, 0.3);
+        }
+        
+        .box h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <img src="{{ url_for('static', filename='images/aaa.png') }}" alt="EmoCare Logo">
+            <h1>Emo<span>Care</span></h1>
+        </div>
+        <header1>
+        <!--<button class="signin-button" onclick="window.location.href='signin'">Sign In</button>
+        <button class="login-button" onclick="window.location.href='login'">Login</button>-->
+        <button class="faq-popup-button" onclick="window.location.href='faq'">FAQs</button>
+        <button class="about_us-button" onclick="window.location.href='about_us'">About Us</button>
+    </header1>
+    </header>
+
+    <div class="bottom-section">
+        <div class="wrapper">
+            <h2>Welcome to EmoCare - Your Emotional Wellness Companion</h2>
+            <p>Take the first step towards a healthier, happier you.</p>
+            <div>
+                <button class="start-test-button" onclick="window.location.href='depressionque'">Start Your Emotional Journey</button>
+            </div>
+            <!-- Boxes Section -->
+            <div class="boxes-container">
+                <div class="box">
+                    <h2>24*7 Support</h2>
+                    <p>Connect with experienced doctors and specialists anytime, anywhere.</p>
+                </div>
+                <div class="box">
+                    <h2>Depression Analysis</h2>
+                    <p>Structured questions to assess symptoms and provide personalized insights.</p>
+                </div>
+                <div class="box">
+                    <h2>Calming Experiences</h2>
+                    <p>Immerse yourself in soothing visuals and sounds to promote relaxation and stress reduction.</p>
+                </div>
+                <div class="box">
+                    <h2>Doubt Clearing</h2>
+                    <p>EmoCare provides first aid for emotional well-being and various forms of support.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

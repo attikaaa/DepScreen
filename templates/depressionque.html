@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <script>
+        var videosFolder = "{{ url_for('static', filename='videos/') }}";
+        var videos = [
+            "Serenity_Slumber_Guided_Meditation_for_Deep_Sleep_SolaceMindscape.mp4",
+            "guided.mp4",
+            "Radiate_Joy_Guided_Gratitude_Meditation_for_Daily_Happiness.mp4",
+            "Relax_Your_Body_Your_Mind_5_Minute_Guided_Meditation.mp4",
+            "Digital_Detox_Guided_Meditation_Find_Serenity_in_Natures_Embrace.mp4",
+            "Guided_Meditation_for_Healing_Navigating_Emptiness_Lost_Moments.mp4",
+            "Awaken_Your_Dreams_A_Guided_Meditation_for_the_Law_of_Attraction.mp4",
+            "A_5_Minute_Mindful_Meditation.mp4",
+            "5_Minute_Meditation_You_Can_Do_Anywhere.mp4",
+            "5_minute_Guided_Mediation_with_Jon_Kabat-Zinn_MasterClass.mp4",
+            "5_Minute_Meditation_to_Clear_Your_Mind.mp4"
+        ];
+        var resultUrl = "{{ url_for('result') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>EmoCare - Depression Detection</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for("static", filename="images/bg.jpg") }}'); /* Use url_for to generate the correct path */
+            background-size: cover;
+            background-position: center;
+            color: #2f5071; /* Dark blue color for text */
+        }
+
+        #warningMessage {
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #futureMessage {
+            color: #2f5071;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+    
+
+
+</head>
+<body>
+
+    <script>
+    // Function to start emotion detection
+        async function startEmotionDetection() {
+        // Make an AJAX request to start emotion detection
+            await $.get("/start_emotion_detection", function (data) {
+                console.log("Emotion Detection Started");
+            });
+
+        // Present the first question
+            updateQuestion();
+        }
+
+        // Function to select an option and move to the next question
+        async function selectOption(optionValue) {
+            selectedOptions[currentQuestion - 1] = optionValue;
+
+            console.log('Selected option:', optionValue);
+
+            if (currentQuestion < selectedQuestions.length) {
+                currentQuestion++;
+                updateQuestion();
+            } else {
+            // All questions are filled, send selected options to the server
+                await sendSelectedOptionsToServer();
+
+            // Stop emotion detection
+                stopEmotionDetection();
+            }
+        }
+
+        // Function to stop emotion detection
+        function stopEmotionDetection() {
+    $.get("/stop_emotion_detection")
+    .done(function(data) {
+        console.log("Emotion Detection Stopped");
+    })
+    .fail(function(xhr, status, error) {
+        console.error("Error stopping emotion detection:", error);
+    });
+}
+
+
+        // Automatically start emotion detection and present the first question
+        startEmotionDetection();
+
+    </script>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/aaa.png') }}" alt="EmoCare Logo">
+                <h1>Emo<span>Care</span></h1>
+            </div>
+            <div class="info-text">
+                <p>It is helpful to consider how the questions have applied to you in the past few weeks or months when you answer them.</p>
+            </div>
+        </header>
+        <section id="depressionDetection">
+            <div id="warningMessage">
+                <p>Important Note: Please provide honest answers for accurate results. Your well-being is our priority.</p>
+            </div>
+            <div class="card" id="questionCard">
+                <div class="card-content">
+                    <h2 id="questionNumber">Question 1</h2>
+                    <p id="questionText">I have least interest in others affair.</p>
+                    <div class="options">
+                        <button onclick="selectOption(1)">Not at all</button>
+                        <button onclick="selectOption(2)">Little bit</button>
+                        <button onclick="selectOption(3)">Moderately</button>
+                        <button onclick="selectOption(4)">Quite a bit</button>
+                        <button onclick="selectOption(5)">Extremely</button>
+                    </div>
+                </div>
+            </div>
+            <div class="info-text">
+                <p>This test will help identify if you might be suffering from depression.</p>
+            </div>
+            <div id="futureMessage">
+                <p>Each step you take is a step toward a brighter future.</p>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>

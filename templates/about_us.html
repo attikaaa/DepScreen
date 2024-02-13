@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EmoCare</title>
+    <style>
+       body {
+            background: url('/static/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center; /* Center-align the text within the body */
+            margin-left: 200px;
+            margin-right: 200px; /* Remove default body margin */
+            padding: 5px; /* Remove default body padding */
+            color: #2f5071
+        }
+
+        h1 {
+            margin-top: 50px; /* Add some top margin to the headline */
+        }
+
+        /* Remove margins and set width to 100% for paragraphs, headings, and lists */
+        p, h2, ul {
+            width: 100%;
+            margin: 5px;
+            padding: 20px;
+            text-align: left; /* Left-align text within these elements */
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/bg.jpg") }}'); /* Use url_for to generate the correct path */
+            background-size: cover;
+            background-position: center;
+            color: #2f5071; /* Dark blue color for text */
+        }
+    </style>
+</head>
+<body>
+    <h1>About Us</h1>
+
+    <p style="text-align:justify";>Welcome to EmoCare, your personalized journey to emotional well-being! Uncover the path to a brighter tomorrow with our innovative depression detection tool. At EmoCare, we believe that understanding your emotional landscape is the first step towards empowerment. Dive into a series of thoughtfully crafted questions that go beyond the surface, guiding you towards self-discovery and emotional awareness. Let the journey begin—because your mental health matters. EmoCare, where your emotions find a voice, and healing starts with a single click. Together, let's embrace a future filled with positivity, resilience, and a newfound sense of self. Your emotional well-being is our priority, and at EmoCare, we're here to illuminate the path to a brighter, more vibrant you!</p>
+    
+    <div class="container">
+        <header>
+            <div class="about_us">
+                <h3 style="text-align: center;">Thank you for helping us and giving authentication to our Website.</h3>
+                <img src="{{ url_for('static', filename='images/maam.png') }}" alt="Maam Photo">
+                <h1>Dr.<span>Shaini Suraj</span></h1>
+                <p style="text-align:justify";>Dr Shaini Suraj is originally trained as an Ayurvedic doctor, but profound fascination with mental health led her to pursue a career in Clinical psychology, demonstrating a unique and holistic approach to understanding and addressing mental health and well-being.  She has done MA in Clinical psychology, pursuing PhD.  She is an adolescent coach, regression therapist and relationship expert.  She is PoSH (Prevention of Sexual Harassment) Certified.  She has presented research papers in 5 International Conferences, 1 national conference.  To her credit she has 25 copyrights and more than 25 publications.  She is a member of various national and international organizations like IAAP , American Psychological Association, ICP International Council of Psychologists etc.  She is the psychological Counsellor of YCCE and has changed the life of innumerable students by counseling.
+            </div>
+        </header>
+        
+    </div>
+    <h2>Developed by:</h2>
+    <ul>
+	    <li>Rishita Uikey - rishitauikey2217@gmail.com</li>
+        <li>Arpita Mishra - arpitamishra1304@gmail.com</li>
+	    <li>Achal Akulwar - achalakulwar@gmail.com</li>
+	    <li>Nikita Sawasakade - nikitasawasakade@gmail.com</li>
+        <li>Prachi Malapure - malapureprachi@gmail.com</li>
+	    <li>Sakshi Deshmukh - sakshideshmukh1307@gmail.com</li>
+        <li>Saloni Urade - saloniurade22@gmail.com</li>
+    </ul>
+</body>
+</html>
+

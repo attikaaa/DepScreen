@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #2f5071; /* Dark blue color for text */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center; /* Center-align the content */
+    margin-bottom: 20px;
+}
+
+.logo {
+    margin-top: 25px;
+    color: #800080; /* Purple color for 'Emo' */
+}
+
+.logo img {
+    display: block; /* Center the image */
+    margin: 0 auto;
+    width: 100px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.logo span {
+    color: #2f5071; /* Dark blue color for 'Care' */
+}
+
+h1 {
+    margin: 0;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+#depressionDetection {
+    text-align: justify;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.card-content {
+    padding: 20px;
+    text-align: center; /* Center-align text content */
+}
+
+h2 {
+    margin-top: 0;
+    color: #800080; /* Purple color for question number */
+}
+
+p#questionText {
+    color: #2f5071; /* Dark blue color for question text */
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.options button {
+    background-color: #f0f0f0; /* Lightest gray color for options */
+    color: #3498db; /* Light blue color for text on options */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.options button:hover {
+    background-color: #e0e0e0; /* Slightly darker gray color on hover */
+}
+
+.info-text {
+    text-align: justify;
+    margin-top: 20px;
+    color: #2f5071; /* Dark blue color for additional information text */
+}
+
+.small-font {
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
+/* Add this code to your existing styles.css file */
+.faq-popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+}
+
+.faq-popup.show {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

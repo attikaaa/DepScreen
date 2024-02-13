@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - EmoCare</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8; /* Added a light background color for better readability */
+            background: url('/static/images/bg.jpg') no-repeat center center fixed;
+        }
+
+        .faq {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-right: 100px;
+            margin-left: 100px;
+        }
+
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .answer {
+            display: none;
+            margin: 15px;
+            margin-right: 20px;
+            margin-left: 30px;
+            text-align: justify;
+        }
+
+        .faq.active .answer {
+            display: block;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-right: 100px;
+            margin-left: 100px;
+        }
+        
+        p {
+            width: 100%;
+            margin: 10px 50px 20px;
+            margin-right: 100px;
+            margin-left: 100px;
+            text-align: justify; /* Left-align text within these elements */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to EmoCare</h1>
+        <p>EmoCare is a platform dedicated to promoting mental well-being. Our innovative tools and resources aim to guide individuals on their journey to emotional awareness and empowerment.</p>
+        <p>Explore the features of EmoCare, take the depression detection test, and discover ways to enhance your mental health. Remember, your emotions matter, and we're here to support you.</p>
+
+    <script>
+        function toggleAnswer(faqElement) {
+            faqElement.classList.toggle('active');
+        }
+    </script>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">1. What is EmoCare?</div>
+        <div class="answer">EmoCare is your personalized journey to emotional well-being! It is an innovative depression detection tool. At EmoCare, we believe that understanding your emotional landscape is the first step towards empowerment. Dive into a series of thoughtfully crafted questions that go beyond the surface, guiding you towards self-discovery and emotional awareness.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">2. Why EmoCare?</div>
+        <div class="answer">Because mental health matters, where your emotions and thoughts find a voice, and healing starts with a single click.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">3. What is depression?</div>
+        <div class="answer">Depression is a constant feeling of sadness and loss of interest, which stops you from doing your normal activities.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">4. What are the stages of depression?</div>
+        <div class="answer">There are three main stages of depression: mild depression, moderate depression, severe depression.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">5. What is major depressive disorder (MDD)?</div>
+        <div class="answer">Also known as depression or major depression, it is often misunderstood as just feeling sad, Emptiness, Illusion of person, etc. But it’s a complex medical condition thought to be caused by a combination of factors, including genetic, biological, psychological, and environmental triggers, according to the National Institute of Mental Health (NIMH).</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">6. How does depression affect the body?</div>
+        <div class="answer">Yes, depression affects the body by headache, stomach problems, headaches, and general aches and pains without a clear physical cause can all be symptoms of depression, according to the NIMH.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">7. What is Guided Imagery?</div>
+        <div class="answer">Guided Imagery is a therapy to success on depression it makes you feel relaxed and calm.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">8. How can I seek help for depression?</div>
+        <div class="answer">If you are experiencing symptoms of depression, it's important to reach out to a mental health professional. You can contact a therapist, counselor, or psychiatrist for support and guidance.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">9. Can lifestyle changes help manage depression?</div>
+        <div class="answer">Yes, adopting a healthy lifestyle can play a crucial role in managing depression. Regular exercise, balanced nutrition, proper sleep, and stress reduction techniques can contribute to overall well-being.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">10. Are there support groups for people with depression?</div>
+        <div class="answer">Yes, there are various support groups and online communities where individuals facing depression can connect, share experiences, and provide mutual support.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">11. Can depression be hereditary?</div>
+        <div class="answer">There is evidence to suggest that depression can have a genetic component. Individuals with a family history of depression may be at a higher risk, but environmental factors also play a significant role.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">12. How do I maintain good mental health?</div>
+        <div class="answer">Maintaining good mental health involves a combination of self-care practices, seeking professional support when needed, staying connected with loved ones, and engaging in activities that bring joy and fulfillment.</div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <div class="question">13. What is Mindfulness Meditation?</div>
+        <div class="answer">Mindfulness meditation is a practice that involves focusing the mind on the present moment. It can help reduce stress, improve concentration, and promote overall well-being.</div>
+    </div>
+
+</div>
+</body>
+</html>
