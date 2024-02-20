@@ -115,7 +115,7 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
     }
 
     // Function to select an option and move to the next question
-    async function selectOption(optionValue) {
+    function selectOption(optionValue) {
         selectedOptions[currentQuestion - 1] = optionValue;
 
         console.log('Selected option:', optionValue);
@@ -124,13 +124,28 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
             currentQuestion++;
             updateQuestion();
         } else {
-            // All questions are filled, send selected options to the server
-            await sendSelectedOptionsToServer();
-
-            // Stop emotion detection
-            stopEmotionDetection();
+            // All questions are filled, show the "Show Result" button
+            document.getElementById('showResultButton').style.display = 'block';
         }
     }
+
+    // Function to show the result page and stop emotion detection
+    function showResult() {
+        sendSelectedOptionsToServer()
+
+        // Stop emotion detection
+        stopEmotionDetection()
+            .then(() => {
+                // Redirect to result page
+                redirectToResultPage();
+            })
+            .catch(error => {
+                console.error('Error stopping emotion detection:', error);
+                // If there's an error, still attempt to redirect to result page
+                redirectToResultPage();
+            });
+    }
+
 
     // Function to stop emotion detection
     function stopEmotionDetection() {
@@ -148,64 +163,77 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
     startEmotionDetection();
 
 
-function sendSelectedOptionsToServer() {
-    fetch('/save_selected_options', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ selectedOptions }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Selected options sent to server:', data);
-        redirectToResultPage();
-    })
-    .catch(error => console.error('Error sending selected options:', error));
-}
-
-function redirectToResultPage() {
-    window.location.href = "/result";
-}
-
-function updateQuestion() {
-    const questionNumberElement = document.getElementById('questionNumber');
-    const questionTextElement = document.getElementById('questionText');
-
-    questionNumberElement.innerText = `Question ${currentQuestion}`;
-    questionTextElement.innerText = getQuestionText(currentQuestion);
-}
-
-function getQuestionText(questionNumber) {
-    return allQuestions[questionNumber - 1];
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    // Function to send selected options to the server
+    function sendSelectedOptionsToServer() {
+        return new Promise((resolve, reject) => {
+            fetch('/save_selected_options', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selectedOptions }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Selected options sent to server:', data);
+                if (currentQuestion === 25) {
+                    stopEmotionDetection();
+                    redirectToResultPage(); // Redirect to result page after 25th question
+                }
+                resolve();
+            })
+            .catch(error => {
+                console.error('Error sending selected options:', error);
+                reject(error);
+            });
+        });
     }
-    return array;
-}
 
-// Function to start emotion detection
-function startEmotionDetection() {
-    fetch('/start_emotion_detection', { method: 'GET' })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error starting emotion detection:', error));
-}
+    function redirectToResultPage() {
+        window.location.href = "/result";
+    }
 
-// Function to stop emotion detection
-function stopEmotionDetection() {
-    fetch('/stop_emotion_detection', { method: 'GET' })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error stopping emotion detection:', error));
-}
+    function updateQuestion() {
+        const questionNumberElement = document.getElementById('questionNumber');
+        const questionTextElement = document.getElementById('questionText');
 
-// Initialize the first question
-updateQuestion();
+        questionNumberElement.innerText = `Question ${currentQuestion}`;
+        questionTextElement.innerText = getQuestionText(currentQuestion);
+    }
+
+    function getQuestionText(questionNumber) {
+        return allQuestions[questionNumber - 1];
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Function to start emotion detection
+    function startEmotionDetection() {
+        fetch('/start_emotion_detection', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error starting emotion detection:', error));
+    }
+
+    // Function to stop emotion detection
+    function stopEmotionDetection() {
+        fetch('/stop_emotion_detection', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Emotion Detection Stopped", data);
+            })
+            .catch(error => console.error('Error stopping emotion detection:', error));
+    }
+
+
+    // Initialize the first question
+    updateQuestion();
 
 function openVideoWindow(videoName) {
     // Replace 'videos' with your actual folder name
