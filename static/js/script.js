@@ -123,9 +123,11 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
             currentQuestion++;
             updateQuestion();
         } else {
-            console.log("Reached last question. Stopping emotion detection...");
-            stopEmotionDetection();
-            sendSelectedOptionsToServer();
+            if (currentQuestion === selectedQuestions.length) {
+                stopEmotionDetection();
+                sendSelectedOptionsToServer();
+                return;
+            }
         }
     }    
     
@@ -158,9 +160,9 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
             .then(response => response.json())
             .then(data => {
                 console.log('Selected options sent to server:', data);
-                if (currentQuestion === 25) {
+                if (currentQuestion === selectedQuestions.length) {
                     stopEmotionDetection();
-                    redirectToResultPage(); // Redirect to result page after 25th question
+                    redirectToResultPage(); // Redirect to result page after the last question
                 }
                 resolve();
             })
@@ -217,22 +219,52 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
     // Initialize the first question
     updateQuestion();
 
-function openVideoWindow(videoName) {
-    // Replace 'videos' with your actual folder name
-    var videoFolder = "/static/videos/"; // Change this path as needed
-    var videoUrl = videoFolder + videoName;
+    function openVideoWindow(videoName) {
+        // Replace 'videos' with your actual folder name
+        var videoFolder = "/static/videos/"; // Change this path as needed
+        var videoUrl = videoFolder + videoName;
 
-    // Open a new window with the selected video
-    var newWindow = window.open(videoUrl, "_blank", "width=100%, height=100%");
-    
-    // Make the video play in fullscreen mode
-    if (newWindow.document.exitFullscreen) {
-        newWindow.document.documentElement.requestFullscreen();
-    } else if (newWindow.document.mozRequestFullScreen) { /* Firefox */
-        newWindow.document.documentElement.mozRequestFullScreen();
-    } else if (newWindow.document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        newWindow.document.documentElement.webkitRequestFullscreen();
-    } else if (newWindow.document.msRequestFullscreen) { /* IE/Edge */
-        newWindow.document.documentElement.msRequestFullscreen();
+        // Open a new window with the selected video, centered on the screen
+        var windowWidth = 800; // Width of the video window
+        var windowHeight = 600; // Height of the video window
+        var windowLeft = (window.screen.width - windowWidth) / 2;
+        var windowTop = (window.screen.height - windowHeight) / 2;
+
+        var newWindow = window.open(videoUrl, "_blank", "width=" + windowWidth + ", height=" + windowHeight + ", left=" + windowLeft + ", top=" + windowTop);
+        
+        // Make the video play in fullscreen mode
+        if (newWindow.document.exitFullscreen) {
+            newWindow.document.documentElement.requestFullscreen();
+        } else if (newWindow.document.mozRequestFullScreen) { /* Firefox */
+            newWindow.document.documentElement.mozRequestFullScreen();
+        } else if (newWindow.document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            newWindow.document.documentElement.webkitRequestFullscreen();
+        } else if (newWindow.document.msRequestFullscreen) { /* IE/Edge */
+            newWindow.document.documentElement.msRequestFullscreen();
+        }
     }
-}
+
+    function startRandomVideo() {
+        // List of video filenames
+        var videoNames = [
+            "Serenity Slumber_ Guided Meditation for Deep Sleep _ SolaceMindscape.mp4",
+            "guided.mp4",
+            "Radiate Joy_ Guided Gratitude Meditation for Daily Happiness.mp4",
+            "Relax Your Body & Your Mind ~ 5 Minute Guided Meditation.mp4",
+            "Digital Detox Guided Meditation _ Find Serenity in Nature's Embrace.mp4",
+            "Guided Meditation for Healing_ Navigating Emptiness & Lost Moments.mp4",
+            "Awaken Your Dreams_ A Guided Meditation for the Law of Attraction.mp4",
+            "A 5 Minute Mindful Meditation.mp4",
+            "5-Minute Meditation You Can Do Anywhere.mp4",
+            "5-minute Guided Mediation with Jon Kabat-Zinn _ MasterClass.mp4",
+            "5 Minute Meditation to Clear Your Mind.mp4"
+        ]; // Add more video filenames as needed
+
+        // Choose a random video from the list
+        var randomIndex = Math.floor(Math.random() * videoNames.length);
+        var randomVideoName = videoNames[randomIndex];
+
+        // Start playing the randomly selected video
+        openVideoWindow(randomVideoName);
+    }
+    

@@ -10,17 +10,26 @@
             margin: 0; /* Remove default body margin */
             padding: 0; /* Remove default body padding */
             color: #2f5071;
+            margin-left: 125px;
+            margin-right: 125px;
+            margin-top: 50px;
         }
 
         h2 {
             margin-top: 50px; /* Add some top margin to the headline */
         }
 
-        p, h2, ul {
+        h2, ul {
             width: 100%;
             margin: 5px;
             padding: 5px;
             text-align: center; /* Center-align text within these elements */
+        }
+
+        p{
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: rgb(46, 42, 87);
         }
 
         button {
@@ -37,62 +46,13 @@
             background-color: #45a049;
         }
     </style>
-
-<script>
-    function openVideoWindow(videoName) {
-        // Replace 'videos' with your actual folder name
-        var videoFolder = "/static/videos/"; // Change this path as needed
-        var videoUrl = videoFolder + videoName;
-
-        // Open a new window with the selected video, centered on the screen
-        var windowWidth = 800; // Width of the video window
-        var windowHeight = 600; // Height of the video window
-        var windowLeft = (window.screen.width - windowWidth) / 2;
-        var windowTop = (window.screen.height - windowHeight) / 2;
-
-        var newWindow = window.open(videoUrl, "_blank", "width=" + windowWidth + ", height=" + windowHeight + ", left=" + windowLeft + ", top=" + windowTop);
-        
-        // Make the video play in fullscreen mode
-        if (newWindow.document.exitFullscreen) {
-            newWindow.document.documentElement.requestFullscreen();
-        } else if (newWindow.document.mozRequestFullScreen) { /* Firefox */
-            newWindow.document.documentElement.mozRequestFullScreen();
-        } else if (newWindow.document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-            newWindow.document.documentElement.webkitRequestFullscreen();
-        } else if (newWindow.document.msRequestFullscreen) { /* IE/Edge */
-            newWindow.document.documentElement.msRequestFullscreen();
-        }
-    }
-
-    function startRandomVideo() {
-        // List of video filenames
-        var videoNames = [
-            "Serenity Slumber_ Guided Meditation for Deep Sleep _ SolaceMindscape.mp4",
-            "guided.mp4",
-            "Radiate Joy_ Guided Gratitude Meditation for Daily Happiness.mp4",
-            "Relax Your Body & Your Mind ~ 5 Minute Guided Meditation.mp4",
-            "Digital Detox Guided Meditation _ Find Serenity in Nature's Embrace.mp4",
-            "Guided Meditation for Healing_ Navigating Emptiness & Lost Moments.mp4",
-            "Awaken Your Dreams_ A Guided Meditation for the Law of Attraction.mp4",
-            "A 5 Minute Mindful Meditation.mp4",
-            "5-Minute Meditation You Can Do Anywhere.mp4",
-            "5-minute Guided Mediation with Jon Kabat-Zinn _ MasterClass.mp4",
-            "5 Minute Meditation to Clear Your Mind.mp4"
-        ]; // Add more video filenames as needed
-
-        // Choose a random video from the list
-        var randomIndex = Math.floor(Math.random() * videoNames.length);
-        var randomVideoName = videoNames[randomIndex];
-
-        // Start playing the randomly selected video
-        openVideoWindow(randomVideoName);
-    }
-</script>
-
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
     <h2>Calming Video</h2>
-    <p>Click the "Start" button to watch a calming video:</p>
+    <p>Guided imagery videos is for calming the mind, reducing stress, and promoting overall relaxation and well-being. hey offer a simple and accessible way to find peace and tranquility in today's fast-paced world.</p>
+    <p><strong>"Before you begin the calming video, consider enhancing your listening experience by using plugs. Whether you're enjoying music, podcasts, or videos, plugs can amplify sound quality and minimize distractions. Don't miss out on the full richness of your audio content – plug in and immerse yourself in crystal-clear sound today!"</strong></p>
+    <!--<p>Click the "Start" button to watch a calming video:</p>-->
     <!-- Call the JavaScript function to start playing a random video centered on the screen when the button is clicked -->
     <button onclick="startRandomVideo()">Start</button>
 </body>
