@@ -114,39 +114,21 @@ const selectedQuestions = shuffledQuestions.slice(0, 25);
         updateQuestion();
     }
 
-    // Function to select an option and move to the next question
     function selectOption(optionValue) {
         selectedOptions[currentQuestion - 1] = optionValue;
-
+    
         console.log('Selected option:', optionValue);
-
+    
         if (currentQuestion < selectedQuestions.length) {
             currentQuestion++;
             updateQuestion();
         } else {
-            // All questions are filled, show the "Show Result" button
-            document.getElementById('showResultButton').style.display = 'block';
+            console.log("Reached last question. Stopping emotion detection...");
+            stopEmotionDetection();
+            sendSelectedOptionsToServer();
         }
-    }
-
-    // Function to show the result page and stop emotion detection
-    function showResult() {
-        sendSelectedOptionsToServer()
-
-        // Stop emotion detection
-        stopEmotionDetection()
-            .then(() => {
-                // Redirect to result page
-                redirectToResultPage();
-            })
-            .catch(error => {
-                console.error('Error stopping emotion detection:', error);
-                // If there's an error, still attempt to redirect to result page
-                redirectToResultPage();
-            });
-    }
-
-
+    }    
+    
     // Function to stop emotion detection
     function stopEmotionDetection() {
         $.get("/stop_emotion_detection")

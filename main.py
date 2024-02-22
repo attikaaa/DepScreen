@@ -190,7 +190,6 @@ def download_file(filename):
     return send_from_directory('static/videos', filename)
 
 # Route for displaying the most common emotion
-# Route for displaying the most common emotion
 @app.route('/most_common_emotion')
 def most_common_emotion():
     global detected_emotions, emotion_dict

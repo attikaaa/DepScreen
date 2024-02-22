@@ -34,7 +34,7 @@
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <div class="container">
         <header>
             <div class="logo">
@@ -62,7 +62,6 @@
                     </div>
                 </div>
             </div>
-            <button id="showResultButton" style="display: none;" onclick="showResult()">Show Result</button>
             <div class="info-text">
                 <p>This test will help identify if you might be suffering from depression.</p>
             </div>
