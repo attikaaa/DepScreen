@@ -35,14 +35,21 @@
     <p>Depression Score: {{ depression_score }}</p>
 
     {% if depression_score > 0 %}
-        {% if 0 < depression_score <= 42 %}
+        {% if 0 < depression_score <= 25 %}
+            <p><strong>According to your score, you are in not suffering from Depression.</strong></p>
+
+        {% elif 25 < depression_score <= 50 %}
             <p><strong>According to your score, you are in Mild Stage of Depression.</strong></p>
 
-        {% elif 42 < depression_score <= 84 %}
+        {% elif 50 < depression_score <= ]75 %}
             <p><strong>According to your score, you are in Moderate Stage of Depression.</strong></p>
 
-        {% elif 84 < depression_score <= 126 %}
-            <p><strong>According to your score, you are in Severe(Major) Stage of Depression.</strong></p>
+        {% elif 75 < depression_score <= 100 %}
+            <p><strong>According to your score, you are in Severe Stage of Depression.</strong></p>
+
+        {% elif 100 < depression_score <= 125 %}
+            <p><strong>According to your score, you are in Extreme(Major) Stage of Depression.</strong></p>
+            <p></p>
 
         {% else %}
             <p>No responses received</p>
