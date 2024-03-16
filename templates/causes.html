@@ -27,9 +27,9 @@
     </style>
 </head>
 <body>
-    {% if 25 < depression_score <= 50 %}
+    {% if 0 < depression_score <= 25 %}
     <h2>No depression</h2>
-    {% elif 50 < depression_score <= 75 %}
+    {% elif 25 < depression_score <= 50 %}
     <h2>Mild depression may cause:</h2>
     <ul>
         <li>Irritability or anger.</li>
@@ -48,7 +48,7 @@
         <li>Reckless behavior, such as abuse of alcohol and drugs, or gambling.</li>
     </ul>
         <!-- Include detailed information about symptoms for mild depression -->
-    {% elif 75 < depression_score <= 100 %}
+    {% elif 50 < depression_score <= 75 %}
     <h2>Moderate depression may cause:</h2>
     <ul>
         <li>problems with self-esteem.</li>
@@ -57,7 +57,7 @@
         <li>Increased sensitivities.</li>
         <li>Excessive worrying.</li>
     </ul>
-    {% elif 100 < depression_score <= 125 %}
+    {% elif 75 < depression_score <= 100 %}
     <h2>Severe(Major) depression may also cause:</h2>
     <ul>
         <li>problems with self-esteem.</li>
@@ -67,7 +67,7 @@
         <li>Excessive worrying.</li>
     </ul>
     
-    {% elif 125 < depression_score <= 150 %}
+    {% elif 100 < depression_score <= 125 %}
     <h2>Extreme(Major) depression may also cause:</h2>
     <ul>
         <li>Delusions.</li>

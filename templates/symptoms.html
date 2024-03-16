@@ -27,9 +27,9 @@
     </style>
 </head>
 <body>
-    {% if 25 < depression_score <= 50 %}
+    {% if 0 < depression_score <= 25 %}
 
-    {% elif 50 < depression_score <= 75 %}
+    {% elif 25 < depression_score <= 50 %}
         <h2>Symptoms of Mild Depression:</h2>
         <ul>
             <li>Low or depressed mood.</li>
@@ -42,7 +42,7 @@
             <li>Excessive crying or numbness.</li>
         </ul>
 
-    {% elif 75 < depression_score <= 100 %}
+    {% elif 50 < depression_score <= 75 %}
         <h2>Symptoms of Moderate Depression:</h2>
         <ul>
             <li>Decreased productivity.</li>
@@ -55,7 +55,7 @@
             <li>physical aches and pain.</li>
         </ul>
 
-    {% elif 100 < depression_score <= 125 %}
+    {% elif 75 < depression_score <= 100 %}
         <h2>Symptoms of Severe Depression:</h2>
         <ul>
             <li>Sleep pattern disturbances.</li>
@@ -79,7 +79,7 @@
             <li>Excessive crying or numbness.</li>
         </ul>
     
-        {% elif 125 < depression_score <= 150 %}
+        {% elif 100 < depression_score <= 125 %}
         <h2>Symptoms of Extreme Depression:</h2>
         <ul>
             <li>Sleep pattern disturbances.</li>

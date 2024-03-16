@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title>Depression Score Result</title>
     
     <style>
         body {
@@ -34,42 +34,154 @@
 
     <p>Depression Score: {{ depression_score }}</p>
 
-    {% if depression_score > 0 %}
-        {% if 25 < depression_score <= 50 %}
-            <p><strong>According to your score, you are in not suffering from Depression.</strong></p>
+    {% if depression_score is defined %}
+        {% if 0 < depression_score <= 25 %}
+            <p><strong>According to your score, you are not suffering from Depression.</strong></p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Emotion: Happy</p>
+                <p>Reason: Your coping mechanisms seem effective in maintaining a positive facade despite any underlying issues.</p>
+                <p>Suggestion: Continue practicing healthy coping mechanisms and consider seeking support if needed for maintaining emotional well-being.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Emotion: Sad</p>
+                <p>Reason: Despite feeling sad, there are no significant depressive symptoms present. The sadness may be attributed to situational factors or temporary stressors.</p>
+                <p>Suggestion: Practice self-care and reach out for support if needed to address any underlying concerns contributing to the sadness.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Emotion: Neutral</p>
+                <p>Reason: Despite displaying a neutral expression, there are no significant depressive symptoms present. Your emotional state may be reflective of your natural disposition.</p>
+                <p>Suggestion: Continue maintaining emotional balance and engaging in activities that bring you joy and fulfillment.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Emotion: Angry</p>
+                <p>Reason: Despite feeling angry, there are no significant depressive symptoms present. The anger may be a response to external stressors or situational triggers.</p>
+                <p>Suggestion: Practice healthy anger management techniques and seek support if needed to address any underlying concerns contributing to the anger.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Emotion: Surprise</p>
+                <p>Reason: Despite feeling surprised, there are no significant depressive symptoms present. The surprise may be attributed to external stimuli or unexpected events.</p>
+                <p>Suggestion: Embrace curiosity and explore the source of your surprise, seeking support if needed to address any concerns.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Emotion: Disgust</p>
+                <p>Reason: Despite feeling disgusted, there are no significant depressive symptoms present. The disgust may be a response to specific external stimuli or stressors.</p>
+                <p>Suggestion: Practice self-care and engage in activities that bring you comfort and joy to alleviate any feelings of disgust.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Emotion: Fearful</p>
+                <p>Reason: Despite feeling fearful, there are no significant depressive symptoms present. The fear may be a response to perceived threats or uncertainties.</p>
+                <p>Suggestion: Practice relaxation techniques and seek support if needed to address any underlying concerns contributing to the fear.</p>
+            {% endif %}
+
+        {% elif 25 < depression_score <= 50 %}
+            <p><strong>According to your score, you are in the Mild Stage of Depression.</strong></p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Reason: You might be adept at suppressing negative emotions and presenting a facade of happiness.</p>
+                <p>Suggestion: Explore underlying issues contributing to the discrepancy and consider therapy for coping mechanisms.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Reason: Genuine emotional expression indicative of mild depressive symptoms.</p>
+                <p>Suggestion: Therapy to address underlying emotional distress.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Reason: Your neutral expression may indicate emotional numbing as a coping mechanism.</p>
+                <p>Suggestion: Seek therapy to address emotional disconnection and facilitate emotional processing.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Reason: Heightened emotional reactivity and irritability as common symptoms of mild depression.</p>
+                <p>Suggestion: Therapy to address underlying emotional distress and develop coping strategies.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Reason: Emotional dysregulation as a characteristic feature of moderate depression.</p>
+                <p>Suggestion: Intensive therapeutic intervention necessary to address depressive symptoms and develop emotional regulation techniques.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Heightened aversion or disgust as a symptom of mild depression.</p>
+                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing aversion and disgust.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Reason: Heightened anxiety as a common symptom of mild depression.</p>
+                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing anxiety and fear.</p>
+            <!-- Add more conditions for other emotions -->
+            {% endif %}
 
         {% elif 50 < depression_score <= 75 %}
-            <p><strong>According to your score, you are in Mild Stage of Depression.</strong></p>
-
+            <p><strong>According to your score, you are in the Moderate Stage of Depression.</strong></p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Reason: Emotional numbing may be causing a consistently happy expression as a coping mechanism.</p>
+                <p>Suggestion: Seek intensive therapy to address emotional disconnection and promote emotional engagement.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Reason: Pervasive sadness is a predominant symptom of moderate depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention is necessary to prevent further emotional deterioration.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Reason: Emotional detachment as a characteristic feature of moderate depression.</p>
+                <p>Suggestion: Intensive therapeutic intervention necessary to address emotional disconnection and facilitate a deeper understanding of underlying distress.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Reason: Heightened emotional reactivity and irritability as manifestations of moderate depression.</p>
+                <p>Suggestion: Intensive therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management techniques.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Reason: Emotional dysregulation as a characteristic feature of moderate depression.</p>
+                <p>Suggestion: Intensive therapeutic intervention necessary to address depressive symptoms and develop emotional regulation techniques.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Heightened aversion or disgust as a symptom of moderate depression.</p>
+                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing aversion and disgust.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Reason: Overwhelming feelings of fear and anxiety as manifestations of moderate depression.</p>
+                <p>Suggestion: Intensive therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anxiety management techniques.</p>
+            <!-- Add more conditions for other emotions -->
+            {% endif %}
+            
         {% elif 75 < depression_score <= 100 %}
-            <p><strong>According to your score, you are in Moderate Stage of Depression.</strong></p>
-
+            <p><strong>According to your score, you are in the Severe Stage of Depression.</strong></p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Reason: Emotional dissociation may be causing a detachment from true emotional state, presenting a cheerful facade.</p>
+                <p>Suggestion: Urgent therapeutic intervention is crucial to address the severity of depressive symptoms.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Reason: Profound sadness is a hallmark feature of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention is essential to prevent further emotional deterioration.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Reason: Emotional numbing and disconnection as predominant features of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention necessary to address emotional disconnection and facilitate emotional processing.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Reason: Heightened irritability and anger as characteristic symptoms of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management strategies.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Reason: Intense emotional distress and emotional dysregulation as manifestations of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention critical to address the severity of depressive symptoms and promote emotional regulation.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Profound emotional disconnection and revulsion as a result of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention is critical to address the severity of depressive symptoms and promote emotional regulation.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Reason: Intense emotional distress and panic as a result of severe depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention is critical to address the severity of depressive symptoms and promote emotional regulation.</p>
+            <!-- Add more conditions for other emotions -->
+            {% endif %}
+            
         {% elif 100 < depression_score <= 125 %}
-            <p><strong>According to your score, you are in Severe Stage of Depression.</strong></p>
-
-        {% elif 125 < depression_score <= 150 %}
-            <p><strong>According to your score, you are in Extreme(Major) Stage of Depression.</strong></p>
-            <p></p>
-
+            <p><strong>According to your score, you are in the Extreme (Major) Stage of Depression.</strong></p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Reason: Emotional masking may be used as a protective mechanism to avoid confronting overwhelming distress.</p>
+                <p>Suggestion: Immediate therapeutic intervention is imperative to address the severity of depressive symptoms.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Reason: Overwhelmed by intense feelings of sadness as a manifestation of extreme depression.</p>
+                <p>Suggestion: Urgent therapeutic intervention is imperative to prevent potential emotional and psychological harm.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Reason: Profound emotional disconnection and numbness as characteristic features of extreme depression.</p>
+                <p>Suggestion: Immediate therapeutic intervention necessary to address emotional disconnection and facilitate emotional processing.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Reason: Heightened anger and irritability indicative of extreme distress and emotional dysregulation.</p>
+                <p>Suggestion: Urgent therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management strategies.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Reason: Overwhelmed by intense emotional turmoil and confusion as manifestations of extreme depression.</p>
+                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Intense feelings of disgust and hopelessness as manifestations of extreme depression.</p>
+                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Reason: Intense feelings of fear and hopelessness as manifestations of extreme depression.</p>
+                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
+            <!-- Add more conditions for other emotions -->
+            {% endif %}
+            
         {% else %}
             <p>No responses received</p>
         {% endif %}
 
-        {% if most_common_emotion %}
-            <p>Most Common Emotion: {{most_common_emotion}}</p>
-        {% else %}
-            <p>Emotion not found</p>
-        {% endif %}
-
-       
-        
         <h2>For more details:</h2>
         <ul>
             <li><a href="{{ url_for('symptoms') }}">Symptoms - You can relate with</a></li>
             <li><a href="{{ url_for('causes') }}">Causes - May cause due to Depression.</a></li>
-            <li><a href="{{ url_for('lifestyle_changes') }}">Lifestyle Changes - Will Help you to recover and leads life toward positive ray.</a></li>
+            <li><a href="{{ url_for('lifestyle_changes') }}">Lifestyle Changes - Will Help you to recover and lead life toward a positive ray.</a></li>
             <li><a href="{{ url_for('information') }}">Information </a></li>
-            <li><a href="{{ url_for('calming_video') }}">Calming Videos - Help given to calm mind</a></li>
+            <li><a href="{{ url_for('calming_video') }}">Calming Videos - Help given to calm the mind</a></li>
         </ul>
 
     {% else %}

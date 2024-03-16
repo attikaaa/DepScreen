@@ -7,11 +7,11 @@ svm_model = joblib.load(r"C:\\Users\\HP\\Downloads\\DepressionDetection\\svm_mod
 
 def calculate_depression_score(selected_options):
     option_values = {   
-        "Not at all": 1,
-        "Little bit": 2,
-        "Moderately": 3,
-        "Quite a bit": 4,
-        "Extremely": 5
+        "Not at all": 0,
+        "Little bit": 1,
+        "Moderately": 2,
+        "Quite a bit": 3,
+        "Extremely": 4
     }
 
     # Calculate the depression score based on the selected options
