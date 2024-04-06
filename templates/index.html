@@ -156,7 +156,7 @@
             <h2>Welcome to EmoCare - Your Emotional Wellness Companion</h2>
             <p>Take the first step towards a healthier, happier you.</p>
             <div>
-                <button class="start-test-button" onclick="window.location.href='depressionque'">Start Your Emotional Journey</button>
+                <button class="start-test-button" id="startEmotionDetectionButton" onclick="startEmotionDetection(); window.location.href='depressionque'">Start Your Emotional Journey</button>
             </div>
             <p><strong>If you're looking to calm your mind and soothe your senses</strong></p>
             <p><strong>click on the Calming Video below.</strong></p>
@@ -184,6 +184,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>

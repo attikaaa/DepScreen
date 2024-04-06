@@ -43,7 +43,7 @@ h1 {
 }
 
 .card {
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     background-color: #ffffff;
@@ -64,24 +64,43 @@ p#questionText {
     color: #2f5071; /* Dark blue color for question text */
 }
 
-.options {
+.options-container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+    flex-direction: column; /* Arrange options vertically */
+    justify-content: flex-end; /* Align options to the bottom */
 }
 
-.options button {
-    background-color: #f0f0f0; /* Lightest gray color for options */
-    color: #3498db; /* Light blue color for text on options */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.option {
+    border: 1px solid #ccc; /* Add border around each option */
+    padding: 10px; /* Add padding to create space around the text */
+    margin-bottom: 5px; /* Add spacing between options */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    width: 90%; /* Ensure all options have the same width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    text-align: justify center; /* Align text to the right */
+    margin-left: 40px;
 }
 
-.options button:hover {
-    background-color: #e0e0e0; /* Slightly darker gray color on hover */
+.option:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.option.selected {
+    font-weight: bold; /* Make the selected option bold */
+}
+.selected {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+
+#nextButtonContainer {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center the next button */
+    margin-top: 20px; /* Adjust margin as needed */
+    color: aquamarine;
 }
 
 .info-text {
@@ -92,23 +111,6 @@ p#questionText {
 
 .small-font {
     font-size: 14px; /* Adjust the font size as needed */
-}
-
-/* Add this code to your existing styles.css file */
-.faq-popup {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-}
-
-.faq-popup.show {
-    display: block;
 }
 
 .close-btn {

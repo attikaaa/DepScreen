@@ -33,8 +33,6 @@
     
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <div class="container">
         <header>
             <div class="logo">
@@ -52,14 +50,16 @@
             <div class="card" id="questionCard">
                 <div class="card-content">
                     <h2 id="questionNumber">Question 1</h2>
-                    <p id="questionText">I have least interest in others affair.</p>
-                    <div class="options">
-                        <button onclick="selectOption(1)">Not at all</button>
-                        <button onclick="selectOption(2)">Little bit</button>
-                        <button onclick="selectOption(3)">Moderately</button>
-                        <button onclick="selectOption(4)">Quite a bit</button>
-                        <button onclick="selectOption(5)">Extremely</button>
-                    </div>
+                    <div id="options" class="options-container">
+                        <div class="option">I do not feel sad</div>
+                        <div class="option">I feel sad</div>
+                        <div class="option">I am sad all the time and I can't snap out of it</div>
+                        <div class="option">I am so sad and unhappy that I can't stand it</div>
+                    </div>                    
+                    <div id="nextButtonContainer">
+                        <button id="nextButton" onclick="nextQuestion()">Next</button>
+                    </div>                    
+                    <button id="submitButton" onclick="stopEmotionDetection(); window.location.href='result'">Submit</button>
                 </div>
             </div>
             <div class="info-text">
@@ -68,8 +68,16 @@
             <div id="futureMessage">
                 <p>Each step you take is a step toward a brighter future.</p>
             </div>
-        </section>
+        </section>        
     </div>
-    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        // Automatically start emotion detection when the page loads
+        window.onload = function() {
+            displayQuestion();
+            startEmotionDetection();
+        };
+    </script>
 </body>
 </html>

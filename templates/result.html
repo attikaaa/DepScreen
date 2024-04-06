@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depression Score Result</title>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Depression Score Result</title>
+        
+        <style>
+            body {
+                background: url('/static/images/bg.jpg') no-repeat center center fixed;
+                background-size: cover;
+                text-align: center; 
+                margin-left: 200px;
+                margin-right: 200px; 
+                padding: 5; 
+                color: #2f5071
+            }
     
-    <style>
-        body {
-            background: url('/static/images/bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center; 
-            margin-left: 200px;
-            margin-right: 200px; 
-            padding: 5; 
-            color: #2f5071
-        }
-
-        h1 {
-            margin-top: 50px; 
-        }
-
-        p, h2, ul {
-            width: 100%;
-            margin: 10px 50px 20px;
-            padding: 10px 20px;
-            text-align: justify; 
-        }
-    </style>
-
-</head>
-<body>
-    <h1>Depression Score Result</h1>
-
-    <p>Depression Score: {{ depression_score }}</p>
+            h1 {
+                margin-top: 50px; 
+            }
+    
+            p, h2, ul {
+                width: 100%;
+                margin: 10px 50px 20px;
+                padding: 10px 20px;
+                text-align: justify; 
+            }
+        </style>
+    
+    </head>
+    <body>
+        <h1>Depression Score Result</h1>
+    
+    <p>Depression Score: 25</p>
+    <p><strong>According to your score, you are experiencing moderate depression.</strong></p>
+    <p>Emotion: {{ most_common_emotion }}</p>
+    {% if most_common_emotion == 'happy' %}
+    <p>Reason: Emotional numbing is observed, indicating borderline clinical depression.</p>
+    {% elif most_common_emotion == 'sad' %}
+    <p>Reason: Pervasive sadness is present, suggesting borderline clinical depression.</p>
+    {% elif most_common_emotion == 'neutral' %}
+    <p>Reason: Emotional detachment is evident, indicating borderline clinical depression.</p>
+    {% elif most_common_emotion == 'angry' %}
+    <p>Reason: Heightened emotional reactivity is observed, suggesting borderline clinical depression.</p>
+    {% elif most_common_emotion == 'surprise' %}
+    <p>Reason: Emotional dysregulation is present, indicating borderline clinical depression.</p>
+    {% elif most_common_emotion == 'fearful' %}
+    <p>Reason: Overwhelming feelings of fear are observed, suggesting borderline clinical depression.</p>
+    {% elif most_common_emotion == 'disgust' %}
+    <p>Reason: Pervasive feelings of disgust are present, indicating borderline clinical depression.</p>
+    {% endif %}
+    <p>Reason: Emotional numbing is observed, indicating borderline clinical depression.</p>
+    <p>Suggestion/Conclusion: Intensive therapeutic intervention necessary; Psychotherapy, Medication.</p>  
 
     {% if depression_score is defined %}
-        {% if 0 < depression_score <= 25 %}
+        {% if 0 < depression_score <= 10 %}
             <p><strong>According to your score, you are not suffering from Depression.</strong></p>
             {% if most_common_emotion == 'happy' %}
                 <p>Emotion: Happy</p>
@@ -66,114 +85,108 @@
                 <p>Reason: Despite feeling fearful, there are no significant depressive symptoms present. The fear may be a response to perceived threats or uncertainties.</p>
                 <p>Suggestion: Practice relaxation techniques and seek support if needed to address any underlying concerns contributing to the fear.</p>
             {% endif %}
-
-        {% elif 25 < depression_score <= 50 %}
-            <p><strong>According to your score, you are in the Mild Stage of Depression.</strong></p>
+        {% elif 11 <= depression_score <= 16 %}
+            <p><strong>According to your score, you are experiencing mild mood disturbance.</strong></p>
+            <p>Emotion: {{ most_common_emotion }}</p>
             {% if most_common_emotion == 'happy' %}
-                <p>Reason: You might be adept at suppressing negative emotions and presenting a facade of happiness.</p>
-                <p>Suggestion: Explore underlying issues contributing to the discrepancy and consider therapy for coping mechanisms.</p>
+                <p>Reason: Despite mild mood disturbance, your coping mechanisms seem effective in maintaining a positive facade.</p>
             {% elif most_common_emotion == 'sad' %}
-                <p>Reason: Genuine emotional expression indicative of mild depressive symptoms.</p>
-                <p>Suggestion: Therapy to address underlying emotional distress.</p>
+                <p>Reason: Genuine emotional expression is observed, indicating mild mood disturbance.</p>
             {% elif most_common_emotion == 'neutral' %}
-                <p>Reason: Your neutral expression may indicate emotional numbing as a coping mechanism.</p>
-                <p>Suggestion: Seek therapy to address emotional disconnection and facilitate emotional processing.</p>
+                <p>Reason: Emotional numbing is present, suggesting mild mood disturbance.</p>
             {% elif most_common_emotion == 'angry' %}
-                <p>Reason: Heightened emotional reactivity and irritability as common symptoms of mild depression.</p>
-                <p>Suggestion: Therapy to address underlying emotional distress and develop coping strategies.</p>
+                <p>Reason: Irritability as a symptom is evident, indicating mild mood disturbance.</p>
             {% elif most_common_emotion == 'surprise' %}
-                <p>Reason: Emotional dysregulation as a characteristic feature of moderate depression.</p>
-                <p>Suggestion: Intensive therapeutic intervention necessary to address depressive symptoms and develop emotional regulation techniques.</p>
-            {% elif most_common_emotion == 'disgust' %}
-                <p>Reason: Heightened aversion or disgust as a symptom of mild depression.</p>
-                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing aversion and disgust.</p>
+                <p>Reason: Heightened emotional reactivity is observed, suggesting mild mood disturbance.</p>
             {% elif most_common_emotion == 'fearful' %}
-                <p>Reason: Heightened anxiety as a common symptom of mild depression.</p>
-                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing anxiety and fear.</p>
-            <!-- Add more conditions for other emotions -->
+                <p>Reason: Heightened anxiety is present, indicating mild mood disturbance.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Heightened aversion is observed, suggesting mild mood disturbance.</p>
             {% endif %}
-
-        {% elif 50 < depression_score <= 75 %}
-            <p><strong>According to your score, you are in the Moderate Stage of Depression.</strong></p>
+            <p>Suggestion/Conclusion: Therapeutic exploration required; Counseling, Cognitive Behavioral Therapy (CBT).</p>
+        {% elif 17 <= depression_score <= 20 %}
+            <p><strong>According to your score, you are at the borderline of clinical depression.</strong></p>
+            <p>Emotion: {{ most_common_emotion }}</p>
             {% if most_common_emotion == 'happy' %}
-                <p>Reason: Emotional numbing may be causing a consistently happy expression as a coping mechanism.</p>
-                <p>Suggestion: Seek intensive therapy to address emotional disconnection and promote emotional engagement.</p>
+                <p>Reason: Emotional numbing is observed, indicating borderline clinical depression.</p>
             {% elif most_common_emotion == 'sad' %}
-                <p>Reason: Pervasive sadness is a predominant symptom of moderate depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention is necessary to prevent further emotional deterioration.</p>
+                <p>Reason: Pervasive sadness is present, suggesting borderline clinical depression.</p>
             {% elif most_common_emotion == 'neutral' %}
-                <p>Reason: Emotional detachment as a characteristic feature of moderate depression.</p>
-                <p>Suggestion: Intensive therapeutic intervention necessary to address emotional disconnection and facilitate a deeper understanding of underlying distress.</p>
+                <p>Reason: Emotional detachment is evident, indicating borderline clinical depression.</p>
             {% elif most_common_emotion == 'angry' %}
-                <p>Reason: Heightened emotional reactivity and irritability as manifestations of moderate depression.</p>
-                <p>Suggestion: Intensive therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management techniques.</p>
+                <p>Reason: Heightened emotional reactivity is observed, suggesting borderline clinical depression.</p>
             {% elif most_common_emotion == 'surprise' %}
-                <p>Reason: Emotional dysregulation as a characteristic feature of moderate depression.</p>
-                <p>Suggestion: Intensive therapeutic intervention necessary to address depressive symptoms and develop emotional regulation techniques.</p>
-            {% elif most_common_emotion == 'disgust' %}
-                <p>Reason: Heightened aversion or disgust as a symptom of moderate depression.</p>
-                <p>Suggestion: Therapy to address underlying depressive symptoms and develop coping strategies for managing aversion and disgust.</p>
+                <p>Reason: Emotional dysregulation is present, indicating borderline clinical depression.</p>
             {% elif most_common_emotion == 'fearful' %}
-                <p>Reason: Overwhelming feelings of fear and anxiety as manifestations of moderate depression.</p>
-                <p>Suggestion: Intensive therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anxiety management techniques.</p>
-            <!-- Add more conditions for other emotions -->
+                <p>Reason: Overwhelming feelings of fear are observed, suggesting borderline clinical depression.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Pervasive feelings of disgust are present, indicating borderline clinical depression.</p>
             {% endif %}
-            
-        {% elif 75 < depression_score <= 100 %}
-            <p><strong>According to your score, you are in the Severe Stage of Depression.</strong></p>
+            <p>Suggestion/Conclusion: Intensive therapeutic intervention necessary; Psychotherapy, Medication (if needed).</p>
+        {% elif 21 <= depression_score <= 30 %}
+            <p><strong>According to your score, you are experiencing moderate depression.</strong></p>
+            <p>Emotion: {{ most_common_emotion }}</p>
             {% if most_common_emotion == 'happy' %}
-                <p>Reason: Emotional dissociation may be causing a detachment from true emotional state, presenting a cheerful facade.</p>
-                <p>Suggestion: Urgent therapeutic intervention is crucial to address the severity of depressive symptoms.</p>
+                <p>Reason: Emotional dissociation is observed, indicating moderate depression.</p>
             {% elif most_common_emotion == 'sad' %}
-                <p>Reason: Profound sadness is a hallmark feature of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention is essential to prevent further emotional deterioration.</p>
+                <p>Reason: Profound sadness is present, suggesting moderate depression.</p>
             {% elif most_common_emotion == 'neutral' %}
-                <p>Reason: Emotional numbing and disconnection as predominant features of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention necessary to address emotional disconnection and facilitate emotional processing.</p>
+                <p>Reason: Profound emotional numbness is evident, indicating moderate depression.</p>
             {% elif most_common_emotion == 'angry' %}
-                <p>Reason: Heightened irritability and anger as characteristic symptoms of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management strategies.</p>
+                <p>Reason: Intense emotional distress is observed, suggesting moderate depression.</p>
             {% elif most_common_emotion == 'surprise' %}
-                <p>Reason: Intense emotional distress and emotional dysregulation as manifestations of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention critical to address the severity of depressive symptoms and promote emotional regulation.</p>
-            {% elif most_common_emotion == 'disgust' %}
-                <p>Reason: Profound emotional disconnection and revulsion as a result of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention is critical to address the severity of depressive symptoms and promote emotional regulation.</p>
+                <p>Reason: Emotional detachment is present, indicating moderate depression.</p>
             {% elif most_common_emotion == 'fearful' %}
-                <p>Reason: Intense emotional distress and panic as a result of severe depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention is critical to address the severity of depressive symptoms and promote emotional regulation.</p>
-            <!-- Add more conditions for other emotions -->
+                <p>Reason: Intense emotional distress is observed, suggesting moderate depression.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Intense emotional distress is observed, suggesting moderate depression.</p>
             {% endif %}
-            
-        {% elif 100 < depression_score <= 125 %}
-            <p><strong>According to your score, you are in the Extreme (Major) Stage of Depression.</strong></p>
+            <p>Suggestion/Conclusion: Immediate therapeutic intervention crucial; Intensive Psychotherapy, Medication (if needed).</p>
+        {% elif 31 <= depression_score <= 40 %}
+            <p><strong>According to your score, you are experiencing severe depression.</strong></p>
+            <p>Emotion: {{ most_common_emotion }}</p>
             {% if most_common_emotion == 'happy' %}
-                <p>Reason: Emotional masking may be used as a protective mechanism to avoid confronting overwhelming distress.</p>
-                <p>Suggestion: Immediate therapeutic intervention is imperative to address the severity of depressive symptoms.</p>
+                <p>Reason: Emotional masking as a protective mechanism is observed, indicating severe depression.</p>
             {% elif most_common_emotion == 'sad' %}
-                <p>Reason: Overwhelmed by intense feelings of sadness as a manifestation of extreme depression.</p>
-                <p>Suggestion: Urgent therapeutic intervention is imperative to prevent potential emotional and psychological harm.</p>
+                <p>Reason: Overwhelmed by intense sadness, suggesting severe depression.</p>
             {% elif most_common_emotion == 'neutral' %}
-                <p>Reason: Profound emotional disconnection and numbness as characteristic features of extreme depression.</p>
-                <p>Suggestion: Immediate therapeutic intervention necessary to address emotional disconnection and facilitate emotional processing.</p>
+                <p>Reason: Extreme emotional detachment is evident, indicating severe depression.</p>
             {% elif most_common_emotion == 'angry' %}
-                <p>Reason: Heightened anger and irritability indicative of extreme distress and emotional dysregulation.</p>
-                <p>Suggestion: Urgent therapeutic intervention necessary to address the severity of depressive symptoms and develop effective anger management strategies.</p>
+                <p>Reason: Overwhelmed by intense anger, suggesting severe depression.</p>
             {% elif most_common_emotion == 'surprise' %}
-                <p>Reason: Overwhelmed by intense emotional turmoil and confusion as manifestations of extreme depression.</p>
-                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
-            {% elif most_common_emotion == 'disgust' %}
-                <p>Reason: Intense feelings of disgust and hopelessness as manifestations of extreme depression.</p>
-                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
+                <p>Reason: Overwhelmed by intense turmoil, indicating severe depression.</p>
             {% elif most_common_emotion == 'fearful' %}
-                <p>Reason: Intense feelings of fear and hopelessness as manifestations of extreme depression.</p>
-                <p>Suggestion: Urgent therapeutic intervention is imperative to address the extreme severity of depressive symptoms and prevent potential emotional and psychological harm.</p>
-            <!-- Add more conditions for other emotions -->
+                <p>Reason: Overwhelmed by intense fear, suggesting severe depression.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Overwhelmed by intense disgust, suggesting severe depression.</p>
             {% endif %}
-            
-        {% else %}
-            <p>No responses received</p>
+            <p>Suggestion/Conclusion: Urgent therapeutic intervention needed; Intensive Psychotherapy, Medication (if needed), Hospitalization.</p>
+        {% elif depression_score > 40 %}
+            <p><strong>According to your score, you are experiencing extreme depression.</strong></p>
+            <p>Emotion: {{ most_common_emotion }}</p>
+            {% if most_common_emotion == 'happy' %}
+                <p>Reason: Emotional masking as a protective mechanism is observed, indicating extreme depression.</p>
+            {% elif most_common_emotion == 'sad' %}
+                <p>Reason: Overwhelmed by intense sadness, suggesting extreme depression.</p>
+            {% elif most_common_emotion == 'neutral' %}
+                <p>Reason: Extreme emotional detachment is evident, indicating extreme depression.</p>
+            {% elif most_common_emotion == 'angry' %}
+                <p>Reason: Overwhelmed by intense anger, suggesting extreme depression.</p>
+            {% elif most_common_emotion == 'surprise' %}
+                <p>Reason: Overwhelmed by intense turmoil, indicating extreme depression.</p>
+            {% elif most_common_emotion == 'fearful' %}
+                <p>Reason: Overwhelmed by intense fear, suggesting extreme depression.</p>
+            {% elif most_common_emotion == 'disgust' %}
+                <p>Reason: Overwhelmed by intense disgust, suggesting extreme depression.</p>
+            {% endif %}
+            <p>Suggestion/Conclusion: Urgent therapeutic intervention imperative; Hospitalization, Intensive Psychotherapy, Medication.</p>
         {% endif %}
+    {% else %}
+        <p>Depression score is not available. Please check your input.</p>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
         <h2>For more details:</h2>
         <ul>
@@ -184,9 +197,8 @@
             <li><a href="{{ url_for('calming_video') }}">Calming Videos - Help given to calm the mind</a></li>
         </ul>
 
-    {% else %}
-        <p>Depression score is not available. Please check your input.</p>
-    {% endif %}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     
 </body>
 </html>

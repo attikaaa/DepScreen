@@ -27,81 +27,131 @@
     </style>
 </head>
 <body>
-    {% if 0 < depression_score <= 25 %}
+    {% if 0 < depression_score <= 10 %}
+        <h2>These ups and downs are considered normal</h2>
+    {% elif 10 < depression_score <= 16 %}
+        <h2>Mild mood disturbance</h2>
+    {% elif 16 < depression_score <= 20 %}
+        <h2>Borderline clinical depression</h2>
+    {% elif 20 < depression_score <= 30 %}
+        <h2>Moderate depression</h2>
+    {% elif 30 < depression_score <= 40 %}
+        <h2>Severe depression</h2>
+    {% else %}
+        <h2>Extreme depression</h2>
+    {% endif %}
 
-    {% elif 25 < depression_score <= 50 %}
-        <h2>Symptoms of Mild Depression:</h2>
-        <ul>
-            <li>Low or depressed mood.</li>
-            <li>Loss of interest in activities.</li>
-            <li>Sleeping too much or too little.</li>
-            <li>Difficulty focusing or concentrating.</li>
-            <li>Fatigue or restlessness.</li>
-            <li>Appetite changes.</li>
-            <li>Feelings of worthlessness or hopelessness.</li>
-            <li>Excessive crying or numbness.</li>
-        </ul>
+    {% if 10 < depression_score <= 16 %}
+    <h3>Symptoms of Mild Mood Disturbance:</h3>
+    <ul>
+        <li>Low or depressed mood.</li>
+        <li>Loss of interest in activities.</li>
+        <li>Sleeping too much or too little.</li>
+        <li>Difficulty focusing or concentrating.</li>
+        <li>Fatigue or restlessness.</li>
+        <li>Appetite changes.</li>
+        <li>Feelings of worthlessness or hopelessness.</li>
+        <li>Excessive crying or numbness.</li>
+    </ul>
+    {% endif %}
 
-    {% elif 50 < depression_score <= 75 %}
-        <h2>Symptoms of Moderate Depression:</h2>
-        <ul>
-            <li>Decreased productivity.</li>
-            <li>Difficulty thinking or concentrating.</li>
-            <li>Diminished interest in socializing or activities.</li>
-            <li>Fatigue or decreased energy.</li>
-            <li>Irritability or anger.</li>
-            <li>Loss of appetite.</li>
-            <li>Low self-esteem or lack of motivation.</li>
-            <li>physical aches and pain.</li>
-        </ul>
+    {% if 16 < depression_score <= 20 %}
+    <h3>Symptoms of Borderline Clinical Depression:</h3>
+    <ul>
+        <li>Reduced productivity.</li>
+        <li>Difficulty thinking or concentrating.</li>
+        <li>Diminished interest in socializing or activities.</li>
+        <li>Fatigue or decreased energy.</li>
+        <li>Irritability or anger.</li>
+        <li>Loss of appetite.</li>
+        <li>Low self-esteem or lack of motivation.</li>
+        <li>Physical aches and pain.</li>
+    </ul>
+    {% endif %}
 
-    {% elif 75 < depression_score <= 100 %}
-        <h2>Symptoms of Severe Depression:</h2>
-        <ul>
-            <li>Sleep pattern disturbances.</li>
-            <li>Change in appetite.</li>
-            <li>Tiredness.</li>
-            <li>Sluggish movements or agitation.</li>
-            <li>Difficulty in concentrating or solving simple everyday problems.</li>
-            <li>Feelings of guilt and/or worthlessness.</li>
-            <li>Problems with self-esteem.</li>
-            <li>Reduced productivity.</li>
-            <li>Feelings of worthlessness.</li>
-            <li>Increased sensitivities.</li>
-            <li>Excessive worrying.</li>
-            <li>Low or depressed mood.</li>
-            <li>Loss of interest in activities.</li>
-            <li>Sleeping too much or too little.</li>
-            <li>Difficulty focusing or concentrating.</li>
-            <li>Fatigue or restlessness.</li>
-            <li>Appetite changes.</li>
-            <li>Feelings of worthlessness or hopelessness.</li>
-            <li>Excessive crying or numbness.</li>
-        </ul>
-    
-        {% elif 100 < depression_score <= 125 %}
-        <h2>Symptoms of Extreme Depression:</h2>
-        <ul>
-            <li>Sleep pattern disturbances.</li>
-            <li>Change in appetite.</li>
-            <li>Tiredness.</li>
-            <li>Sluggish movements or agitation.</li>
-            <li>Difficulty in concentrating or solving simple everyday problems.</li>
-            <li>Feelings of guilt and/or worthlessness.</li>
-            <li>Problems with self-esteem.</li>
-            <li>Reduced productivity.</li>
-            <li>Feelings of worthlessness.</li>
-            <li>Increased sensitivities.</li>
-            <li>Excessive worrying.</li>
-            <li>Low or depressed mood.</li>
-            <li>Loss of interest in activities.</li>
-            <li>Sleeping too much or too little.</li>
-            <li>Difficulty focusing or concentrating.</li>
-            <li>Fatigue or restlessness.</li>
-            <li>Appetite changes.</li>
-            <li>Feelings of worthlessness or hopelessness.</li>
-            <li>Excessive crying or numbness.</li>
-        </ul>
+    {% if 20 < depression_score <= 30 %}
+    <h3>Symptoms of Moderate Depression:</h3>
+    <ul>
+        <li>Complete emotional detachment.</li>
+        <li>Loss of touch with reality.</li>
+        <li>Profound feelings of hopelessness and helplessness.</li>
+        <li>Increased risk of self-harm or suicide.</li>
+        <li>Decreased productivity.</li>
+        <li>Difficulty thinking or concentrating.</li>
+        <li>Diminished interest in socializing or activities.</li>
+        <li>Fatigue or decreased energy.</li>
+        <li>Irritability or anger.</li>
+        <li>Loss of appetite.</li>
+        <li>Low self-esteem or lack of motivation.</li>
+        <li>physical aches and pain.</li>
+    </ul>
+    {% endif %}
+
+    {% if 30 < depression_score <= 40 %}
+    <h3>Symptoms of Severe Depression:</h3>
+    <ul>
+        <li>Complete emotional detachment.</li>
+        <li>Loss of touch with reality.</li>
+        <li>Profound feelings of hopelessness and helplessness.</li>
+        <li>Increased risk of self-harm or suicide.</li>
+        <li>Delusions.</li>
+        <li>Feelings of stupor.</li>
+        <li>Hallucinations.</li>
+        <li>Sleep pattern disturbances.</li>
+        <li>Change in appetite.</li>
+        <li>Tiredness.</li>
+        <li>Sluggish movements or agitation.</li>
+        <li>Difficulty in concentrating or solving simple everyday problems.</li>
+        <li>Feelings of guilt and/or worthlessness.</li>
+        <li>Problems with self-esteem.</li>
+        <li>Reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+        <li>Low or depressed mood.</li>
+        <li>Loss of interest in activities.</li>
+        <li>Sleeping too much or too little.</li>
+        <li>Difficulty focusing or concentrating.</li>
+        <li>Fatigue or restlessness.</li>
+        <li>Appetite changes.</li>
+        <li>Feelings of worthlessness or hopelessness.</li>
+        <li>Excessive crying or numbness.</li>
+    </ul>
+    {% endif %}
+
+    {% if depression_score > 40 %}
+    <h3>Symptoms of Extreme Depression:</h3>
+    <ul>
+        <li>Complete emotional detachment.</li>
+        <li>Loss of touch with reality.</li>
+        <li>Profound feelings of hopelessness and helplessness.</li>
+        <li>Increased risk of self-harm or suicide.</li>
+        <li>Delusions.</li>
+        <li>Feelings of stupor.</li>
+        <li>Hallucinations.</li>
+        <li>Severe cognitive impairment.</li>
+        <li>Inability to function in daily life.</li>
+        <li>Sleep pattern disturbances.</li>
+        <li>Change in appetite.</li>
+        <li>Tiredness.</li>
+        <li>Sluggish movements or agitation.</li>
+        <li>Difficulty in concentrating or solving simple everyday problems.</li>
+        <li>Feelings of guilt and/or worthlessness.</li>
+        <li>Problems with self-esteem.</li>
+        <li>Reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+        <li>Low or depressed mood.</li>
+        <li>Loss of interest in activities.</li>
+        <li>Sleeping too much or too little.</li>
+        <li>Difficulty focusing or concentrating.</li>
+        <li>Fatigue or restlessness.</li>
+        <li>Appetite changes.</li>
+        <li>Feelings of worthlessness or hopelessness.</li>
+        <li>Excessive crying or numbness.</li>
+    </ul>
     {% endif %}
 </body>
 </html>
+

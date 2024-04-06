@@ -20,64 +20,88 @@
         /* Remove margins and set width to 100% for paragraphs, headings, and lists */
         p, h2, ul {
             width: 100%;
-            margin: 5opx;
+            margin: 50px;
             padding: 50px;
             text-align: left; /* Left-align text within these elements */
         }
     </style>
 </head>
 <body>
-    {% if 0 < depression_score <= 25 %}
+    {% if 0 < depression_score <= 10 %}
     <h2>No depression</h2>
-    {% elif 25 < depression_score <= 50 %}
-    <h2>Mild depression may cause:</h2>
+    {% elif 10 < depression_score <= 16 %}
+    <h2>Mild mood disturbance</h2>
+    {% elif 16 < depression_score <= 20 %}
+    <h2>Borderline clinical depression</h2>
+    {% elif 20 < depression_score <= 30 %}
+    <h2>Moderate depression</h2>
+    {% elif 30 < depression_score <= 40 %}
+    <h2>Severe depression</h2>
+    {% else %}
+    <h2>Extreme depression</h2>
+    {% endif %}
+
+    {% if 10 < depression_score <= 16 %}
+    <h3>Mild mood disturbance may cause:</h3>
     <ul>
         <li>Irritability or anger.</li>
-        <li>Hopelessness.</li>
         <li>Feelings of guilt and despair.</li>
-        <li>Self-loathing.</li>
         <li>A loss of interest in activities you once enjoyed.</li>
         <li>Difficulties concentrating at work.</li>
         <li>A lack of motivation.</li>
-        <li>A sudden disinterest in socializing.</li>
-        <li>Aches and pains with seemingly no direct cause.</li>
         <li>Daytime sleepiness and fatigue.</li>
-        <li>Insomnia.</li>
-        <li>Appetite changes.</li>
-        <li>Weight changes.</li>
-        <li>Reckless behavior, such as abuse of alcohol and drugs, or gambling.</li>
     </ul>
-        <!-- Include detailed information about symptoms for mild depression -->
-    {% elif 50 < depression_score <= 75 %}
-    <h2>Moderate depression may cause:</h2>
-    <ul>
-        <li>problems with self-esteem.</li>
-        <li>reduced productivity.</li>
-        <li>Feelings of worthlessness.</li>
-        <li>Increased sensitivities.</li>
-        <li>Excessive worrying.</li>
-    </ul>
-    {% elif 75 < depression_score <= 100 %}
-    <h2>Severe(Major) depression may also cause:</h2>
-    <ul>
-        <li>problems with self-esteem.</li>
-        <li>reduced productivity.</li>
-        <li>Feelings of worthlessness.</li>
-        <li>Increased sensitivities.</li>
-        <li>Excessive worrying.</li>
-    </ul>
+    {% endif %}
     
-    {% elif 100 < depression_score <= 125 %}
-    <h2>Extreme(Major) depression may also cause:</h2>
+    {% if 16 < depression_score <= 20 %}
+    <h3>Borderline clinical depression may cause:</h3>
+    <ul>
+        <li>Problems with self-esteem.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+    </ul>
+    {% endif %}
+
+    {% if 20 < depression_score <= 30 %}
+    <h3>Moderate depression may cause:</h3>
+    <ul>
+        <li>Reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Problems with self-esteem.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+    </ul>
+    {% endif %}
+
+    {% if 30 < depression_score <= 40 %}
+    <h3>Severe depression may cause:</h3>
     <ul>
         <li>Delusions.</li>
         <li>Feelings of stupor.</li>
-        <li>Hallucinations.</li>
         <li>Suicidal thoughts or behaviors.</li>
+        <li>Reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Problems with self-esteem.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
     </ul>
-        <!-- Include detailed information about symptoms for severe depression -->
-    {% else %}
-    <p>No responses received</p>
+    {% endif %}
+
+    {% if depression_score > 40 %}
+    <h3>Extreme depression may cause:</h3>
+    <ul>
+        <li>Complete emotional detachment.</li>
+        <li>Intense feelings of despair.</li>
+        <li>Loss of touch with reality.</li>
+        <li>Profound feelings of hopelessness and helplessness.</li>
+        <li>Delusions.</li>
+        <li>Suicidal thoughts or behaviors.</li>
+        <li>Reduced productivity.</li>
+        <li>Feelings of worthlessness.</li>
+        <li>Problems with self-esteem.</li>
+        <li>Increased sensitivities.</li>
+        <li>Excessive worrying.</li>
+    </ul>
     {% endif %}
 </body>
 </html>

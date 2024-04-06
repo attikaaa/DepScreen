@@ -1,270 +1,335 @@
 let currentQuestion = 1;
 let selectedOptions = [];
-let lastQuestion = false;
 
-// pool of questions
-const allQuestions = [
-    "I have least interest in other affairs.",
-    "I do not have sound sleep.",
-    "I am hopeless about the future.",
-    "I feel tired all the time.",
-    "I feel irritated all the time.",
-    "I seldom attend the parties.",
-    "I feel dejected all the time.",
-    "I am disgusted with myself all the time.",
-    "I feel, I am worse than anybody else.",
-    "I think of killing myself all the time",
-    "I am always worried about my health.",
-    "I can never take a decision.",
-    "I have lost interest in people.",
-    "I don't bother about people.",
-    "Once I wake up, it is hard to get back to sleep.",
-    "I feel that my future is in the dark.",
-    "I can't work as long as I used to do.",
-    "I feel that I should take some energy tonic to continue working.",
-    "I get irritated more easily than I used to.",
-    "I love to spend more and more time in my own world of fantasies.",
-    "Once I am dejected, it is hard to overcome.",
-    "I am disappointed with my physique.",
-    "I blame myself for my faults.",
-    "I love to hurt myself when I find myself to be guilty.",
-    "I am worried about upset stomach or constipation.",
-    "I feel difficulty in taking a decision.",
-    "I take others' help while taking a decision.",
-    "I wake up several times at night.",
-    "I have nothing to look forward.",
-    "Even the minute things irritate me.",
-    "I escape from relatives and friends.",
-    "Whether it is at home or outside, nobody listens to me.",
-    "I hate myself when I see a fair-complexioned person.",
-    "I feel that I am responsible for all that happens around me.",
-    "I hurt myself rather than others when I am annoyed.",
-    "Headache upsets me very much.",
-    "I feel trouble while breathing.",
-    "It is very hard for me to decide all alone.",
-    "I remain alike in joy and sorrow.",
-    "I often dream while sleeping.",
-    "I feel that everything is useless.",
-    "It is difficult for me to work more than an hour.",
-    "It is hard for me to tolerate anything.",
-    "Once I get excited, it is hard to cool down.",
-    "I never share my joys with others.",
-    "I feel dejected when youngsters misbehave.",
-    "I hate myself when I fail in my attempts.",
-    "I am critical of myself for my weakness.",
-    "I think of killing myself when I meet failure.",
-    "For me, the nearest or the dearest doesn't have any sense.",
-    "I have to wake up several times at night.",
-    "I have the least interest in others' affairs.",
-    "I dislike myself when I find that others are superior to me.",
-    "I feel that I am the most foolish person in the world.",
-    "I think of killing myself when I face shame.",
-    "I feel a lump in the throat.",
-    "I am least interested in making friends.",
-    "I see wild dreams while sleeping.",
-    "I often get up at night during sleep.",
-    "I feel that living is a burden.",
-    "I depend on people to get my work completed.",
-    "I am becoming more and more irritated day by day.",
-    "I don't comment on others' affairs.",
-    "I don't like to make friends.",
-    "I am disappointed with my memory.",
-    "I blame myself for my failure.",
-    "I hurt myself rather than accusing others.",
-    "I like to kill myself rather than being blamed.",
-    "I am worried about my dizzy future.",
-    "It takes too long for me to take a decision.",
-    "I don't have any interest in making intimacy with people.",
-    "I am not interested to know the outcome of my work.",
-    "I am too tired to do anything.",
-    "I don't even think of my elders when I get irritated.",
-    "For me, dejection is no worse than an enemy.",
-    "I am disgusted with my intelligence.",
-    "I am critical of myself for my behavior.",
-    "I put off making decisions more than I used to.",
-    "Pains in the heart or chest upsets me.",
-    "I feel uneasiness among the relatives.",
-    "I murmur while sleeping.",
-    "I think that I am a burden for others.",
-    "My working capacity is much worse now.",
-    "I try to escape things that irritate me.",
-    "I escape from giving suggestions to people even if I am asked to do so.",
-    "I overcome dejection when people pacify me.",
-    "I am dejected with my fortune.",
-    "I blame myself for the unhappiness.",
-    "I love to kill myself when I am surrounded by a problem.",
-    "I feel weakness while walking.",
-    "I escape from taking decisions."
+// Define the new questions and options
+const newQuestions = [
+    "Question 1",
+    "Question 2",
+    "Question 3",
+    "Question 4",
+    "Question 5",
+    "Question 6",
+    "Question 7",
+    "Question 8",
+    "Question 9",
+    "Question 10",
+    "Question 11",
+    "Question 12",
+    "Question 13",
+    "Question 14",
+    "Question 15",
+    "Question 16",
+    "Question 17",
+    "Question 18",
+    "Question 19",
+    "Question 20",
+    "Question 21"
 ];
 
-// Shuffle the array to randomize the order of questions
-const shuffledQuestions = shuffleArray(allQuestions);
+const newOptions = {
+    0: ["I do not feel sad", "I feel sad", "I am sad all the time and I can't snap out of it", "I am so sad and unhappy that I can't stand it"],
+    1: ["I am not particularly discouraged about the future", "I feel discouraged about the future", "I feel I have nothing to look forward to", "I feel the future is hopeless and that things cannot improve"],
+    2: ["I do not feel like a failure", "I feel I have failed more than the average person", "As I look back on my life, all I can see is a lot of failures", "I feel I am a complete failure as a person"],
+    3: ["I get as much satisfaction out of things as I used to", "I don't enjoy things the way I used to", "I don't get real satisfaction out of anything anymore", "I am dissatisfied or bored with everything"],
+    4: ["I don't feel particularly guilty", "I feel guilty a good part of the time", "I feel quite guilty most of the time", "I feel guilty all of the time"],
+    5: ["I don't feel I am being punished", "I feel I may be punished", "I expect to be punished", "I feel I am being punished"],
+    6: ["I don't feel disappointed in myself", "I am disappointed in myself", "I am disgusted with myself", "I hate myself"],
+    7: ["I don't feel I am any worse than anybody else", "I am critical of myself for my weaknesses or mistakes", "I blame myself all the time for my faults", "I blame myself for everything bad that happens"],
+    8: ["I don't have any thoughts of killing myself", "I have thoughts of killing myself, but I would not carry them out", "I would like to kill myself", "I would kill myself if I had the chance"],
+    9: ["I don't cry any more than usual", "I cry more now than I used to", "I cry all the time now", "I used to be able to cry, but now I can't cry even though I want to"],
+    10: ["I am no more irritated by things than I ever was", "I am slightly more irritated now than usual", "I am quite annoyed or irritated a good deal of the time", "I feel irritated all the time"],
+    11: ["I have not lost interest in other people", "I am less interested in other people than I used to be", "I have lost most of my interest in other people", "I have lost all of my interest in other people"],
+    12: ["I make decisions about as well as I ever could", "I put off making decisions more than I used to", "I have greater difficulty in making decisions more than I used to", "I can't make decisions at all anymore"],
+    13: ["I don't feel that I look any worse than I used to", "I am worried that I am looking old or unattractive", "I feel there are permanent changes in my appearance that make me look unattractive", "I believe that I look ugly"],
+    14: ["I can work about as well as before", "It takes an extra effort to get started at doing something", "I have to push myself very hard to do anything", "I can't do any work at all"],
+    15: ["I can sleep as well as usual", "I don't sleep as well as I used to", "I wake up 1-2 hours earlier than usual and find it hard to get back to sleep", "I wake up several hours earlier than I used to and cannot get back to sleep"],
+    16: ["I don't get more tired than usual", "I get tired more easily than I used to", "I get tired from doing almost anything", "I am too tired to do anything"],
+    17: ["My appetite is no worse than usual", "My appetite is not as good as it used to be", "My appetite is much worse now", "I have no appetite at all anymore"],
+    18: ["I haven't lost much weight, if any, lately", "I have lost more than five pounds", "I have lost more than ten pounds", "I have lost more than fifteen pounds"],
+    19: ["I am no more worried about my health than usual", "I am worried about physical problems like aches, pains, upset stomach, or constipation", "I am very worried about physical problems and it's hard to think of much else", "I am so worried about my physical problems that I cannot think of anything else"],
+    20: ["I have not noticed any recent change in my interest in sex", "I am less interested in sex than I used to be", "I have almost no interest in sex", "I have lost interest in sex completely"]
+};
 
-// Select the first 25 questions from the shuffled array
-const selectedQuestions = shuffledQuestions.slice(0, 25);
+const option_values = {   
+    "I do not feel sad": 0,
+    "I feel sad": 1,
+    "I am sad all the time and I can't snap out of it": 2,
+    "I am so sad and unhappy that I can't stand it": 3,
+    "I am not particularly discouraged about the future": 0,
+    "I feel discouraged about the future": 1,
+    "I feel I have nothing to look forward to": 2,
+    "I feel the future is hopeless and that things cannot improve": 3,
+    "I do not feel like a failure": 0,
+    "I feel I have failed more than the average person": 1,
+    "As I look back on my life, all I can see is a lot of failures": 2,
+    "I feel I am a complete failure as a person": 3,
+    "I get as much satisfaction out of things as I used to": 0,
+    "I don't enjoy things the way I used to": 1,
+    "I don't get real satisfaction out of anything anymore": 2,
+    "I am dissatisfied or bored with everything": 3,
+    "I don't feel particularly guilty": 0,
+    "I feel guilty a good part of the time": 1,
+    "I feel quite guilty most of the time": 2,
+    "I feel guilty all of the time": 3,
+    "I don't feel I am being punished": 0,
+    "I feel I may be punished": 1,
+    "I expect to be punished": 2,
+    "I feel I am being punished": 3,
+    "I don't feel disappointed in myself": 0,
+    "I am disappointed in myself": 1,
+    "I am disgusted with myself": 2,
+    "I hate myself": 3,
+    "I don't feel I am any worse than anybody else": 0,
+    "I am critical of myself for my weaknesses or mistakes": 1,
+    "I blame myself all the time for my faults": 2,
+    "I blame myself for everything bad that happens": 3,
+    "I don't have any thoughts of killing myself": 0,
+    "I have thoughts of killing myself, but I would not carry them out": 1,
+    "I would like to kill myself": 2,
+    "I would kill myself if I had the chance": 3,
+    "I don't cry any more than usual": 0,
+    "I cry more now than I used to": 1,
+    "I cry all the time now": 2,
+    "I used to be able to cry, but now I can't cry even though I want to": 3,
+    "I am no more irritated by things than I ever was": 0,
+    "I am slightly more irritated now than usual": 1,
+    "I am quite annoyed or irritated a good deal of the time": 2,
+    "I feel irritated all the time": 3,
+    "I have not lost interest in other people": 0,
+    "I am less interested in other people than I used to be": 1,
+    "I have lost most of my interest in other people": 2,
+    "I have lost all of my interest in other people": 3,
+    "I make decisions about as well as I ever could": 0,
+    "I put off making decisions more than I used to": 1,
+    "I have greater difficulty in making decisions more than I used to": 2,
+    "I can't make decisions at all anymore": 3,
+    "I don't feel that I look any worse than I used to": 0,
+    "I am worried that I am looking old or unattractive": 1,
+    "I feel there are permanent changes in my appearance that make me look unattractive": 2,
+    "I believe that I look ugly": 3,
+    "I can work about as well as before": 0,
+    "It takes an extra effort to get started at doing something": 1,
+    "I have to push myself very hard to do anything": 2,
+    "I can't do any work at all": 3,
+    "I can sleep as well as usual": 0,
+    "I don't sleep as well as I used to": 1,
+    "I wake up 1-2 hours earlier than usual and find it hard to get back to sleep": 2,
+    "I wake up several hours earlier than I used to and cannot get back to sleep": 3,
+    "I don't get more tired than usual": 0,
+    "I get tired more easily than I used to": 1,
+    "I get tired from doing almost anything": 2,
+    "I am too tired to do anything": 3,
+    "My appetite is no worse than usual": 0,
+    "My appetite is not as good as it used to be": 1,
+    "My appetite is much worse now": 2,
+    "I have no appetite at all anymore": 3,
+    "I haven't lost much weight, if any, lately": 0,
+    "I have lost more than five pounds": 1,
+    "I have lost more than ten pounds": 2,
+    "I have lost more than fifteen pounds": 3,
+    "I am no more worried about my health than usual": 0,
+    "I am worried about physical problems like aches, pains, upset stomach, or constipation": 1,
+    "I am very worried about physical problems and it's hard to think of much else": 2,
+    "I am so worried about my physical problems that I cannot think of anything else": 3,
+    "I have not noticed any recent change in my interest in sex": 0,
+    "I am less interested in sex than I used to be": 1,
+    "I have almost no interest in sex": 2,
+    "I have lost interest in sex completely": 3
+}
 
-    // Function to start emotion detection
-    async function startEmotionDetection() {
-        // Make an AJAX request to start emotion detection
-        await $.get("/start_emotion_detection", function (data) {
-            console.log("Emotion Detection Started");
-        });
+// Function to stop emotion detection
+function stopEmotionDetection() {
+    $.get("/stop_emotion_detection")
+    .done(function(data) {
+        console.log("Emotion Detection Stopped");
+    })
+    .fail(function(xhr, status, error) {
+        console.error("Error stopping emotion detection:", error);
+    });
+}
 
-        // Present the first question
-        updateQuestion();
+// Function to start emotion detection
+async function startEmotionDetection() {
+    // Make an AJAX request to start emotion detection
+    await $.get("/start_emotion_detection", function (data) {
+        console.log("Emotion Detection Started");
+    });
+}
+
+function displayQuestion() {
+    console.log("displayQuestion() called");
+
+    // Clear previous options
+    const optionsContainer = document.getElementById("options");
+    optionsContainer.innerHTML = '';
+
+    // Display current question
+    const currentQuestionText = newQuestions[currentQuestion - 1];
+    document.getElementById("questionNumber").textContent = currentQuestionText;
+
+    // Add options for the current question
+    const currentOptions = newOptions[currentQuestion - 1];
+    currentOptions.forEach((option, index) => {
+        const optionElement = document.createElement("div");
+        optionElement.textContent = option;
+        optionElement.classList.add('option'); // Add a class for styling
+        if (selectedOptions[currentQuestion - 1] === index) {
+            optionElement.classList.add('selected'); // Add 'selected' class if the option is selected
+        }
+        optionElement.addEventListener("click", () => selectOption(index)); // Add event listener to select option
+        optionsContainer.appendChild(optionElement);
+    });
+
+    // Start emotion detection when displaying the first question
+    if (currentQuestion === 1) {
+        startEmotionDetection();
     }
 
-    function selectOption(optionValue) {
-        selectedOptions[currentQuestion - 1] = optionValue;
-    
-        console.log('Selected option:', optionValue);
-    
-        if (currentQuestion < selectedQuestions.length) {
+    // Show "Next" button until the 20th question, then show "Submit" button on the 21st question
+    if (currentQuestion < 21) {
+        document.getElementById("nextButton").style.display = 'block';
+        document.getElementById("submitButton").style.display = 'none';
+    } else {
+        document.getElementById("nextButton").style.display = 'none';
+        document.getElementById("submitButton").style.display = 'block';
+    }
+}
+
+
+// Function to handle option selection
+function selectOption(index) {
+    selectedOptions[currentQuestion - 1] = index; // Save the index of the selected option
+    const options = document.querySelectorAll('.option');
+    options.forEach((option) => {
+        option.classList.remove('selected');
+    });
+    const selectedOption = options[index];
+    selectedOption.classList.add('selected');
+}
+
+function saveSelectedOptions() {
+    // Make an AJAX request to save selected options on the server
+    $.ajax({
+        url: '/save_selected_options',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ selectedOptions: selectedOptions }),
+        success: function (response) {
+            // Get the depression score from the response
+            const depressionScore = response.depressionScore;
+
+            // Do something with the depression score, such as displaying it or using it for further actions
+            console.log('Depression Score:', depressionScore);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error saving selected options:', error);
+        }
+    });
+}
+
+// Function to handle the next button click
+function nextQuestion() {
+    const selectedOption = selectedOptions[currentQuestion - 1];
+    if (selectedOption !== undefined) {
+        if (currentQuestion < newQuestions.length) {
             currentQuestion++;
-            updateQuestion();
+            displayQuestion();
         } else {
-            if (currentQuestion === selectedQuestions.length) {
-                stopEmotionDetection();
-                sendSelectedOptionsToServer();
-                return;
-            }
+            stopEmotionDetection(); // Stop emotion detection after the last question
+            document.getElementById("questionCard").style.display = 'none';
+            document.getElementById("resultContainer").style.display = 'block';
+            calculateScore();
         }
-    }    
-    
-    // Function to stop emotion detection
-    function stopEmotionDetection() {
-        $.get("/stop_emotion_detection")
-        .done(function(data) {
-            console.log("Emotion Detection Stopped");
-        })
-        .fail(function(xhr, status, error) {
-            console.error("Error stopping emotion detection:", error);
-        });
+    } else {
+        alert("Please select an option before moving to the next question.");
     }
-    
+}
 
-    // Automatically start emotion detection and present the first question
+function calculateScore() {
+    let score = 0;
+    selectedOptions.forEach((optionIndex) => {
+        const selectedOption = newOptions[currentQuestion - 1][optionIndex]; // Get the selected option text
+        score += option_values[selectedOption]; // Access the corresponding value from option_values
+    });
+    return score; // Return the calculated score
+}
+
+window.addEventListener("beforeunload", function(event) {
+    // Clear selectedOptions when the page is unloaded
+    selectedOptions = [];
+});
+
+function submitQuestions() {
+    // Calculate the depression score
+    const score = calculateScore();
+
+    // Clear selected options
+    selectedOptions = [];
+
+    // Stop emotion detection
+    stopEmotionDetection();
+
+    // Navigate to the result page with the depression score
+    window.location.href = '/result.html?depression_score=' + score;
+}
+
+
+window.onload = function() {
+    // Add event listener to the submit button
+    document.getElementById("submitButton").addEventListener("click", submitQuestions);
+    
+    // Display the first question and start emotion detection
+    displayQuestion();
     startEmotionDetection();
+};
 
 
-    // Function to send selected options to the server
-    function sendSelectedOptionsToServer() {
-        return new Promise((resolve, reject) => {
-            fetch('/save_selected_options', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ selectedOptions }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Selected options sent to server:', data);
-                if (currentQuestion === selectedQuestions.length) {
-                    stopEmotionDetection();
-                    redirectToResultPage(); // Redirect to result page after the last question
-                }
-                resolve();
-            })
-            .catch(error => {
-                console.error('Error sending selected options:', error);
-                reject(error);
-            });
-        });
-    }
 
-    function redirectToResultPage() {
-        window.location.href = "/result";
-    }
+function openVideoWindow(videoName) {
+    // Replace 'videos' with your actual folder name
+    var videoFolder = "/static/videos/"; // Change this path as needed
+    var videoUrl = videoFolder + videoName;
 
-    function updateQuestion() {
-        const questionNumberElement = document.getElementById('questionNumber');
-        const questionTextElement = document.getElementById('questionText');
+    // Open a new window with the selected video, centered on the screen
+    var windowWidth = 800; // Width of the video window
+    var windowHeight = 600; // Height of the video window
+    var windowLeft = (window.screen.width - windowWidth) / 2;
+    var windowTop = (window.screen.height - windowHeight) / 2;
 
-        questionNumberElement.innerText = `Question ${currentQuestion}`;
-        questionTextElement.innerText = getQuestionText(currentQuestion);
-    }
-
-    function getQuestionText(questionNumber) {
-        return allQuestions[questionNumber - 1];
-    }
-
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    // Function to start emotion detection
-    function startEmotionDetection() {
-        fetch('/start_emotion_detection', { method: 'GET' })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error starting emotion detection:', error));
-    }
-
-    // Function to stop emotion detection
-    function stopEmotionDetection() {
-        fetch('/stop_emotion_detection', { method: 'GET' })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Emotion Detection Stopped", data);
-            })
-            .catch(error => console.error('Error stopping emotion detection:', error));
-    }
-
-
-    // Initialize the first question
-    updateQuestion();
-
-    function openVideoWindow(videoName) {
-        // Replace 'videos' with your actual folder name
-        var videoFolder = "/static/videos/"; // Change this path as needed
-        var videoUrl = videoFolder + videoName;
-
-        // Open a new window with the selected video, centered on the screen
-        var windowWidth = 800; // Width of the video window
-        var windowHeight = 600; // Height of the video window
-        var windowLeft = (window.screen.width - windowWidth) / 2;
-        var windowTop = (window.screen.height - windowHeight) / 2;
-
-        var newWindow = window.open(videoUrl, "_blank", "width=" + windowWidth + ", height=" + windowHeight + ", left=" + windowLeft + ", top=" + windowTop);
-        
-        // Make the video play in fullscreen mode
-        if (newWindow.document.exitFullscreen) {
-            newWindow.document.documentElement.requestFullscreen();
-        } else if (newWindow.document.mozRequestFullScreen) { /* Firefox */
-            newWindow.document.documentElement.mozRequestFullScreen();
-        } else if (newWindow.document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-            newWindow.document.documentElement.webkitRequestFullscreen();
-        } else if (newWindow.document.msRequestFullscreen) { /* IE/Edge */
-            newWindow.document.documentElement.msRequestFullscreen();
-        }
-    }
-
-    function startRandomVideo() {
-        // List of video filenames
-        var videoNames = [
-            "Serenity Slumber_ Guided Meditation for Deep Sleep _ SolaceMindscape.mp4",
-            "guided.mp4",
-            "Radiate Joy_ Guided Gratitude Meditation for Daily Happiness.mp4",
-            "Relax Your Body & Your Mind ~ 5 Minute Guided Meditation.mp4",
-            "Digital Detox Guided Meditation _ Find Serenity in Nature's Embrace.mp4",
-            "Guided Meditation for Healing_ Navigating Emptiness & Lost Moments.mp4",
-            "Awaken Your Dreams_ A Guided Meditation for the Law of Attraction.mp4",
-            "A 5 Minute Mindful Meditation.mp4",
-            "5-Minute Meditation You Can Do Anywhere.mp4",
-            "5-minute Guided Mediation with Jon Kabat-Zinn _ MasterClass.mp4",
-            "5 Minute Meditation to Clear Your Mind.mp4"
-        ]; // Add more video filenames as needed
-
-        // Choose a random video from the list
-        var randomIndex = Math.floor(Math.random() * videoNames.length);
-        var randomVideoName = videoNames[randomIndex];
-
-        // Start playing the randomly selected video
-        openVideoWindow(randomVideoName);
-    }
+    var newWindow = window.open(videoUrl, "_blank", "width=" + windowWidth + ", height=" + windowHeight + ", left=" + windowLeft + ", top=" + windowTop);
     
+    // Make the video play in fullscreen mode
+    if (newWindow.document.exitFullscreen) {
+        newWindow.document.documentElement.requestFullscreen();
+    } else if (newWindow.document.mozRequestFullScreen) { /* Firefox */
+        newWindow.document.documentElement.mozRequestFullScreen();
+    } else if (newWindow.document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        newWindow.document.documentElement.webkitRequestFullscreen();
+    } else if (newWindow.document.msRequestFullscreen) { /* IE/Edge */
+        newWindow.document.documentElement.msRequestFullscreen();
+    }
+}
+
+function startRandomVideo() {
+    // List of video filenames
+    var videoNames = [
+        "Serenity Slumber_ Guided Meditation for Deep Sleep _ SolaceMindscape.mp4",
+        "guided.mp4",
+        "Radiate Joy_ Guided Gratitude Meditation for Daily Happiness.mp4",
+        "Relax Your Body & Your Mind ~ 5 Minute Guided Meditation.mp4",
+        "Digital Detox Guided Meditation _ Find Serenity in Nature's Embrace.mp4",
+        "Guided Meditation for Healing_ Navigating Emptiness & Lost Moments.mp4",
+        "Awaken Your Dreams_ A Guided Meditation for the Law of Attraction.mp4",
+        "A 5 Minute Mindful Meditation.mp4",
+        "5-Minute Meditation You Can Do Anywhere.mp4",
+        "5-minute Guided Mediation with Jon Kabat-Zinn _ MasterClass.mp4",
+        "5 Minute Meditation to Clear Your Mind.mp4"
+    ]; // Add more video filenames as needed
+
+    // Choose a random video from the list
+    var randomIndex = Math.floor(Math.random() * videoNames.length);
+    var randomVideoName = videoNames[randomIndex];
+
+    // Start playing the randomly selected video
+    openVideoWindow(randomVideoName);
+}
